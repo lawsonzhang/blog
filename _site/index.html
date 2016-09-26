@@ -1,135 +1,513 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-  <head>
+	
+		<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Lawsonzhang&#39;s Blog</title>
-  <meta name="description" content="step first. step second ...">
+  <meta content="Lawson's blog,first step, second step..." name="description">
+  <meta name="keywords" content="Lawson,blog,Jekyll,github,gh-pages">
+  <meta name="author" content="Lawsonzhang">
+  <title>Lawsonzhang's Homepage</title>
+  <!-- favicon -->
+  <link rel="shortcut icon" href="/static/img/favicon.ico">
 
-  
-  
-  <link rel="stylesheet" href="http://blog.lehehe.me/css/main.css">
-  <link rel="canonical" href="http://blog.lehehe.me/">
-  <link rel="alternate" type="application/rss+xml" title="Lawsonzhang&#39;s Blog" href="http://blog.lehehe.me/feed.xml">
-  
-  
+  <!-- Third-party CSS -->
+  <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/bower_components/animate.css/animate.min.css" rel="stylesheet">
+  <link href="/bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/static/font-mfizz/font-mfizz.css" rel="stylesheet">
+  <!-- <link href="/bower_components/toastr/toastr.min.css" rel="stylesheet"> -->
+  <link href="/bower_components/jquery.gritter/css/jquery.gritter.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <!-- <link href="/static/css/pygments.css" rel="stylesheet"> -->
+  <link href="/static/css/style.min.css" rel="stylesheet">
+
+  <!-- Third-party scripts -->
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/bower_components/i18next/i18next.min.js"></script>
+  <script src="/bower_components/PACE/pace.min.js"></script>
+  <script src="/bower_components/wow/dist/wow.min.js"></script>
+
+  <!-- Custom and plugin javascript -->
+  <!-- <script src="/static/js/inspinia.js"></script> -->
+
 </head>
 
+	
 
-  <body>
 
-    <header class="site-header" role="banner">
+<body id="page-top" class="landing-page">
 
-  <div class="wrapper">
+	
 
-    
-    
-    <a class="site-title" href="http://blog.lehehe.me/">Lawsonzhang&#39;s Blog</a>
+        <div class="navbar-wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top" id="i18_title"><span data-i18n="website.title">Lawsonzhang's Homepage</span></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right" id="i18_navbar">
+                
+                    <li>
+                      <a class="page-scroll" href="#about-me">
+                        <span data-i18n="nav.about_me">About</span>
+                      </a>
+                    </li>
+                
+                    <li>
+                      <a class="page-scroll" href="#career">
+                        <span data-i18n="nav.career">Career</span>
+                      </a>
+                    </li>
+                
+                    <li>
+                      <a class="page-scroll" href="#skills">
+                        <span data-i18n="nav.skills">Skills</span>
+                      </a>
+                    </li>
+                
+                    <li>
+                      <a class="page-scroll" href="#projects">
+                        <span data-i18n="nav.projects">Projects</span>
+                      </a>
+                    </li>
+                
+                    <li>
+                      <a class="page-scroll" href="#blog">
+                        <span data-i18n="nav.blog">Blog</span>
+                      </a>
+                    </li>
+                
+                    <li>
+                      <a class="page-scroll" href="#links">
+                        <span data-i18n="nav.link">Links</span>
+                      </a>
+                    </li>
+                
 
-    <nav class="site-nav">
-      <a href="#" class="menu-icon">
-        <svg viewBox="0 0 18 15" width="18px" height="15px">
-          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-        </svg>
-      </a>
-
-      <div class="trigger">
-        
-          
-          <a class="page-link" href="http://blog.lehehe.me/about/">About</a>
-          
-        
-          
-        
-          
-        
-      </div>
+                
+                  <li>
+                    <a id="set_lang_en" class="btn btn-sm set_en" data-locale="en">
+                      <img src="/static/img/flags/United-States.png" height="16px" width="16px">
+                    </a>
+                  </li>
+                
+                  <li>
+                    <a id="set_lang_zh" class="btn btn-sm set_zh" data-locale="zh">
+                      <img src="/static/img/flags/China.png" height="16px" width="16px">
+                    </a>
+                  </li>
+                
+                </ul>
+            </div>
+        </div>
     </nav>
-
-  </div>
-
-</header>
-
-
-    <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <div class="home">
-
-  <h1 class="page-heading">Posts</h1>
-
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Sep 26, 2016</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2016/09/26/welcome-to-jekyll.html">Welcome to Jekyll!</a>
-        </h2>
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
-
+</div>
+<div id="inSlider" class="carousel carousel-fade" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#inSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#inSlider" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <div class="container">
+                <div class="carousel-caption">
+                </div>
+                <div class="carousel-image wow zoomIn">
+                    <!-- <img src="static/img/landing/laptop.png" alt="laptop"/> -->
+                </div>
+            </div>
+            <!-- Set background for slide in css -->
+            <div class="header-back one"></div>
+        </div>
+        <div class="item">
+            <div class="container">
+                <div class="carousel-caption blank">
+                </div>
+            </div>
+            <!-- Set background for slide in css -->
+            <div class="header-back two"></div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#inSlider" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#inSlider" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
 
-      </div>
-    </main>
 
-    <footer class="site-footer">
-
-  <div class="wrapper">
-
-    <h2 class="footer-heading">Lawsonzhang&#39;s Blog</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li>
-            
-              Lawsonzhang&#39;s Blog
-            
-            </li>
-          <li><a href="mailto:manthilam1@gmail.com">manthilam1@gmail.com</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-2">
-        <ul class="social-media-list">
-          
-          <li>
-            <a href="https://github.com/none"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
-</span><span class="username">none</span></a>
-
-          </li>
-          
-
-          
-          <li>
-            <a href="https://twitter.com/none"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
-</span><span class="username">none</span></a>
-
-          </li>
-          
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-3">
-        <p>step first. step second ...
-</p>
-      </div>
+  
+  <section id="about-me" class="features  " style="margin-top: 0px;">
+    <div class="container" id="i18_about_me">
+    <div class="row m-b-lg">
+        <div class="col-lg-12 text-center">
+            <div class="navy-line"></div>
+            <h1><span data-i18n="about_me.about_me">About Me</span></h1>
+            <!-- <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p> -->
+        </div>
     </div>
+    <div class="row">
+        <!-- python -->
+        <div class="col-xs-2 wow fadeInLeft">
+            <div class="team-member">
+                <div class="vote-icon">
+                    <i class="icon-python"></i>
+                </div>
+            </div>
+        </div>
+        <!-- linux -->
+        <div class="col-xs-2 wow fadeInLeft">
+            <div class="team-member">
+                <div class="vote-icon">
+                    <i class="icon-shell"></i>
+                </div>
+            </div>
+        </div>
+        <!-- avatar -->
+        <div class="col-xs-4">
+            <div class="team-member wow zoomIn">
+                <img src="/static/img/landing/Lawson.jpg" height="110" width="110" class="img-responsive img-circle" alt="">
+                <h4><span class="navy">Zhang</span> Lawson</h4>
+                <ul class="list-inline social-icon">
+                    <li><a href="https://github.com/lawsonzhang" target="blank"><i class="fa fa-github"></i></a>
+                    </li>
+                    <li><a href="https://www.facebook.com/none" target="blank"><i class="fa fa-facebook"></i></a>
+                    <li><a href="mailto:manthilam1@gmail.com"><i class="fa fa-envelope-o"></i></a>
+                    </li>
+                    </li>
+                    <li><a href="http://blog.lehehe.me/feed.xml" target="blank"><i class="fa fa-rss"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- html -->
+        <div class="col-xs-2 wow fadeInRight">
+            <div class="team-member">
+                <div class="vote-icon">
+                    <i class="icon-angular"></i>
+                </div>
+            </div>
+        </div>
+        <!-- docker -->
+        <div class="col-xs-2 wow fadeInRight">
+            <div class="team-member">
+                <div class="vote-icon">
+                    <i class="icon-docker"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg wow zoomIn">
+            <p><span data-i18n="about_me.des">I am a PHP engineer with website development, automation Ops and writing scripts experience. Life is a continuous learning process, so work makes me more rigorous, travel makes my life more colorful. I can make lots of friends when I coding and travel.</span></p>
+        </div>
+    </div>
+</div>
 
-  </div>
+  </section>
 
-</footer>
+  
+  <section id="career" class="features  gray-section  timeline" style="margin-top: 0px;">
+    <div class="container" id="i18_career">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <div class="navy-line"></div>
+            <h1><span data-i18n="career.my_career">My Career</span></h1>
+        </div>
+    </div>
+    <div class="row features-block">
+        <div class="col-lg-12">
+            <div id="vertical-timeline" class="vertical-container light-timeline center-orientation">
+            
+            
+                <div class="vertical-timeline-block">
+                    <div class="vertical-timeline-icon navy-bg wow rotateIn">
+                        <i class="fa fa-plus-square"></i>
+                    </div>
+                    <div class="vertical-timeline-content wow  rotateInUpRight ">
+                        <h2><span data-i18n="career.pandaee">Pandaee</span></h2>
+                        <p><span data-i18n="career.pandaee_des">Now I am in Nextcode and develop website with Python code for genetic analysis. </span></p>
+                        <span class="vertical-date"><span data-i18n="career.pandaee_date"> Jun. 2016 </span>
+                        <br/> <small><span data-i18n="career.pandaee_job">PHP Developer</span></small> </span>
+                    </div>
+                </div>
+            
+            
+                <div class="vertical-timeline-block">
+                    <div class="vertical-timeline-icon navy-bg wow rotateIn">
+                        <i class="fa fa-gamepad"></i>
+                    </div>
+                    <div class="vertical-timeline-content wow  rotateInUpLeft ">
+                        <h2><span data-i18n="career.freshfresh">Freshfresh</span></h2>
+                        <p><span data-i18n="career.freshfresh_des">In Freshfresh, I learned game service system and use Python code for ops. </span></p>
+                        <span class="vertical-date"><span data-i18n="career.freshfresh_date"> Jul. 2015 </span>
+                        <br/> <small><span data-i18n="career.freshfresh_job">PHP Developer</span></small> </span>
+                    </div>
+                </div>
+            
+            
+                <div class="vertical-timeline-block">
+                    <div class="vertical-timeline-icon navy-bg wow rotateIn">
+                        <i class="fa fa-cloud"></i>
+                    </div>
+                    <div class="vertical-timeline-content wow  rotateInUpRight ">
+                        <h2><span data-i18n="career.befound">Befound</span></h2>
+                        <p><span data-i18n="career.befound_des">In Befound, I started to deal with servers and Linux system and use shell scripts to manage massive server. </span></p>
+                        <span class="vertical-date"><span data-i18n="career.befound_date"> May. 2012 </span>
+                        <br/> <small><span data-i18n="career.befound_job">PHP Developer</span></small> </span>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+  </section>
+
+  
+  <section id="skills" class="features  team" style="margin-top: 0px;">
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center" id="i18_skills">
+            <div class="navy-line"></div>
+            <h1><span data-i18n="skills.my_skills">My Skills</span></h1>
+        </div>
+    </div>
+    <div class="row features-block">
+        
+            
+        <div class="row">
+            <div class="col-lg-1 col-lg-offset-2 wow  fadeInLeft ">
+                <p>PHP</p>
+            </div>
+            <div class="col-lg-7 wow   fadeInRight ">
+                <div class="progress progress-bar-default">
+                    <div style="width: 85%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="85" role="progressbar" class="progress-bar">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+            
+        <div class="row">
+            <div class="col-lg-1 col-lg-offset-2 wow  fadeInRight ">
+                <p>HTML/CSS</p>
+            </div>
+            <div class="col-lg-7 wow   fadeInLeft ">
+                <div class="progress progress-bar-default">
+                    <div style="width: 65%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="65" role="progressbar" class="progress-bar">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+            
+        <div class="row">
+            <div class="col-lg-1 col-lg-offset-2 wow  fadeInLeft ">
+                <p>Linux/Shell</p>
+            </div>
+            <div class="col-lg-7 wow   fadeInRight ">
+                <div class="progress progress-bar-default">
+                    <div style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" role="progressbar" class="progress-bar">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+            
+        <div class="row">
+            <div class="col-lg-1 col-lg-offset-2 wow  fadeInRight ">
+                <p>jQuery</p>
+            </div>
+            <div class="col-lg-7 wow   fadeInLeft ">
+                <div class="progress progress-bar-default">
+                    <div style="width: 70%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar" class="progress-bar">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+            
+        <div class="row">
+            <div class="col-lg-1 col-lg-offset-2 wow  fadeInLeft ">
+                <p>MySQL</p>
+            </div>
+            <div class="col-lg-7 wow   fadeInRight ">
+                <div class="progress progress-bar-default">
+                    <div style="width: 80%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="80" role="progressbar" class="progress-bar">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+            
+        <div class="row">
+            <div class="col-lg-1 col-lg-offset-2 wow  fadeInRight ">
+                <p>NoSQL</p>
+            </div>
+            <div class="col-lg-7 wow   fadeInLeft ">
+                <div class="progress progress-bar-default">
+                    <div style="width: 80%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="80" role="progressbar" class="progress-bar">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+    </div>
+</div>
+
+  </section>
+
+  
+  <section id="projects" class="features  gray-section  project" style="margin-top: 0px;">
+    <div class="container" id="i18_projects">
+    <div class="row m-b-lg">
+        <div class="col-lg-12 text-center">
+            <div class="navy-line"></div>
+            <h1><span data-i18n="projects.my_projects">My Projects</span></h1>
+        </div>
+    </div>
+    <div class="row">
+        
+            
+            
+                
+            <div class="col-sm-6 wow col-sm-offset-3 zoomIn">
+                
+            
+              <div class="team-member">
+                  <img src="/static/img/landing/saplatform.png" class="img-responsive img-circle img-small" alt="">
+                  <h4><a href="https://github.com/lawsonzhang/passwordmanage" target="blank"><span class="navy">PasswordManage</a></span></h4>
+                  <p><span data-i18n="projects.passwordmanage">Passwordmanage is a tool that purpose to help you to manage your own passwords of some websites or applications.</span></p>
+                  <ul class="list-inline">
+                      <li>
+                          <a class="github-button" href="https://github.com/lawsonzhang/passwordmanage" data-icon="octicon-star" data-count-href="/lawsonzhang/passwordmanage/stargazers" data-count-api="/repos/lawsonzhang/passwordmanage#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star hydepress/jekyll-install on GitHub">Star</a>
+                      </li>
+                      <li>
+                          <a class="github-button" href="https://github.com/lawsonzhang/passwordmanage" data-icon="octicon-fork" data-count-href="/lawsonzhang/passwordmanage/network/members" data-count-api="/repos/lawsonzhang/passwordmanage#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Star hydepress/jekyll-install on GitHub">Fork</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      
+    </div>
+</div>
+<br>
+
+  </section>
+
+  
+  <section id="blog" class="features  testimonials navy-section" style="margin-top: 0px;">
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center wow zoomIn" id="i18_blog">
+            <div style="height: 80px;"></div>
+            <a class="btn btn-lg btn-default btn-rounded btn-outline wow bounceIn" href="/blog/"><span data-i18n="blog.my_blog">My Blog</span></a>
+            <div style="height: 80px;"></div>
+        </div>
+    </div>
+</div>
+
+  </section>
+
+  
+  <section id="links" class="features  gray-section  contact" style="margin-top: 0px;">
+    <div class="container" id="i18_link">
+    <div class="row m-b-lg">
+        <div class="col-lg-12 text-center">
+            <div class="navy-line"></div>
+            <h1><span data-i18n="link.link">Link</span></h1>
+        </div>
+    </div>
+    <div class="row">
+    
+        
+        
+            
+        <div class="col-sm-4 col-sm-offset-4 wow zoomIn">
+                
+        
+        <div class="team-member">
+            <h4><span class="navy">Zhang</span> Lawson</h4>
+            <p>PHPer.</p>
+            <ul class="list-inline social-icon">
+                <li><a href="http://blog.lehehe.me" target="blank"><i class="fa fa-link"></i></a>
+                </li>
+                <li><a href="mailto:manthilam1@gmail.com"><i class="fa fa-envelope-o"></i></a>
+                </li>
+            </ul>
+        </div>
+        </div>
+    
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg">
+            <p id="jalpc_site_pv"><strong>&copy; 2016 Lawsonzhang's Homepage</strong></p>
+        </div>
+    </div>
+</div>
+
+  </section>
 
 
-  </body>
 
+
+	
+		<script src="/static/js/scroll.js"></script>
+<script src="/static/js/localization.js"></script>
+<script async src="/static/js/count.min.js"></script>
+
+<!-- Baidu analytics -->
+
+  <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?317acca9ef9255b934e46371e471431d";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+  </script>
+
+
+<!-- Google analytics -->
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-73784599-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+	
+
+</body>
 </html>

@@ -1,0 +1,50 @@
+{
+  "website":{
+    "title": "劳森张的主页"
+  },
+  "nav":{
+    "home": "首页",
+    "about_me": "关于我",
+    "skills": "技能",
+    "projects": "项目",
+    "career": "职业",
+    "blog": "博客",
+    "link": "友情链接"
+  },
+  "about_me":{
+    "about_me": "关于我",
+    "des": "我是一个PHP网站开发工程师，自动化操作和写脚本的经验。生活是一个不断学习的过程，所以工作使我更加严谨，旅行使我的生活更加丰富多彩。当我编码和旅行的时候我可以交很多朋友。"
+  },
+  "skills":{
+    "my_skills": "我的技能"
+  },
+  "projects":{
+    "my_projects": "我的项目",
+    "passwordmanage": "PasswordManage是一个帮你管理网站或者应用的密码的工具。"
+  },
+  "career":{
+    "my_career": "职业生涯",
+    "pandaee": "熊猫眼",
+    "pandaee_des": "现在我在熊猫眼，使用PHP做电商直播项目.",
+    "pandaee_date": "2016年6月",
+    "pandaee_job": "PHP工程师",
+
+    "freshfresh": "两鲜",
+    "freshfresh_des": "去年下半年我刚来上海，这是我在上海的第一份工作，做Magent的二次开发.",
+    "freshfresh_date": "2015年7月",
+    "freshfresh_job": "PHP工程师",
+
+    "befound": "比方",
+    "befound_des": "这是我的第一份工作，地点在杭州，做公司的教育网站，以及论坛.",
+    "befound_date": "2012年5月",
+    "befound_job": "PHP工程师"    
+  },
+  "blog":{
+    "my_blog": "我的博客"
+  },
+  "link":{
+    "link": "友情链接",
+    "view": "次访问"
+  }
+
+}

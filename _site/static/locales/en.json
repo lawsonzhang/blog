@@ -1,0 +1,50 @@
+{
+  "website":{
+    "title": "Lawsonzhang's Homepage"
+  },
+  "nav":{
+    "home": "Home",
+    "about_me": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "career": "Career",
+    "blog": "Blog",
+    "link": "Link"
+  },
+  "about_me":{
+    "about_me": "About Me",
+    "des": "I am a PHP engineer with website development, automation Ops and writing scripts experience. Life is a continuous learning process, so work makes me more rigorous, travel makes my life more colorful. I can make lots of friends when I coding and travel."
+  },
+  "skills":{
+    "my_skills": "My Skills"
+  },
+  "projects":{
+    "my_projects": "My Projects",
+    "passwordmanage": "Passwordmanage is a tool that purpose to help you to manage your own passwords of some websites or applications."
+  },
+  "career":{
+    "my_career": "My Career",
+    "pandaee": "Pandaee",
+    "pandaee_des": "Now I am in Pandaee and develop website with PHP code for genetic analysis.",
+    "pandaee_date": "Jun. 2016",
+    "pandaee_job": "PHP Developer",
+
+    "freshfresh": "Freshfresh",
+    "freshfresh_des": "In Freshfresh, I learned game service system and use PHP code for ops.",
+    "freshfresh_date": "July. 2015",
+    "freshfresh_job": "PHP Developer",
+
+    "befound": "Befound",
+    "befound_des": "In Befound, I started to deal with servers and Linux system and use shell scripts to manage massive server.",
+    "befound_date": "May. 2012",
+    "befound_job": "PHP Developer"
+  },
+  "blog":{
+    "my_blog": "My Blog"
+  },
+  "link":{
+    "link": "Link",
+    "view": "views"
+  }
+
+}

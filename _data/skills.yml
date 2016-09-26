@@ -1,0 +1,17 @@
+- name: PHP
+  percentage: 85
+
+- name: HTML/CSS
+  percentage: 65
+
+- name: Linux/Shell
+  percentage: 75
+
+- name: jQuery
+  percentage: 70
+
+- name: MySQL
+  percentage: 80
+
+- name: NoSQL
+  percentage: 80

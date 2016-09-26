@@ -1,0 +1,6 @@
+- name: 'PasswordManage'
+  i18n: 'passwordmanage'
+  url: '/lawsonzhang/passwordmanage'
+  img: 'static/img/landing/saplatform.png'
+  desc: 'Passwordmanage is a tool that purpose to help you to manage your own passwords of some websites or applications.'
+

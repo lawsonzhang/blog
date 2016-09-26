@@ -1,0 +1,41 @@
+- name:
+    detail: Pandaee
+    i18n: pandaee
+  desc:
+    detail: Now I am in Nextcode and develop website with Python code for genetic analysis.
+    i18n: pandaee_des
+  date:
+    detail: Jun. 2016
+    i18n: pandaee_date
+  job:
+    detail: PHP Developer
+    i18n: pandaee_job
+  icon: fa-plus-square
+
+- name:
+    detail: Freshfresh
+    i18n: freshfresh
+  desc:
+    detail: In Freshfresh, I learned game service system and use Python code for ops.
+    i18n: freshfresh_des
+  date:
+    detail: Jul. 2015
+    i18n: freshfresh_date
+  job:
+    detail: PHP Developer
+    i18n: freshfresh_job
+  icon: fa-gamepad
+
+- name:
+    detail: Befound
+    i18n: befound
+  desc:
+    detail: In Befound, I started to deal with servers and Linux system and use shell scripts to manage massive server.
+    i18n: befound_des
+  date:
+    detail: May. 2012
+    i18n: befound_date
+  job:
+    detail: PHP Developer
+    i18n: befound_job
+  icon: fa-cloud

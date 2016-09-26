@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>http://blog.lehehe.me/life/2016/09/26/first-blog.html</loc>
+    </url>
+
+
+    <url>
+        <loc>http://blog.lehehe.me/404.html</loc>
+    </url>
+
+    <url>
+        <loc>http://blog.lehehe.me/about/</loc>
+    </url>
+
+    <url>
+        <loc>http://blog.lehehe.me/blog/</loc>
+    </url>
+
+    <url>
+        <loc>http://blog.lehehe.me/search/cb-search.json</loc>
+    </url>
+
+    <url>
+        <loc>http://blog.lehehe.me/feed.xml</loc>
+    </url>
+
+    <url>
+        <loc>http://blog.lehehe.me/</loc>
+    </url>
+
+    <url>
+        <loc>http://blog.lehehe.me/javascript/</loc>
+    </url>
+
+    <url>
+        <loc>http://blog.lehehe.me/life/</loc>
+    </url>
+
+    <url>
+        <loc>http://blog.lehehe.me/linux/</loc>
+    </url>
+
+    <url>
+        <loc>http://blog.lehehe.me/mysql/</loc>
+    </url>
+
+    <url>
+        <loc>http://blog.lehehe.me/nosql/</loc>
+    </url>
+
+    <url>
+        <loc>http://blog.lehehe.me/php/</loc>
+    </url>
+
+    <url>
+        <loc>http://blog.lehehe.me/robots.txt</loc>
+    </url>
+
+    <url>
+        <loc>http://blog.lehehe.me/sitemap.xml</loc>
+    </url>
+
+</urlset>

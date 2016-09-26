@@ -1,0 +1,20 @@
+- name: Blog
+  href: '/blog/'
+
+- name: PHP
+  href: '/php/'
+
+- name: Linux
+  href: '/linux/'
+
+- name: Javascript
+  href: '/javascript/'
+
+- name: MySQL
+  href: '/mysql/'
+
+- name: NoSQL
+  href: '/nosql/'
+
+- name: Life
+  href: '/life/'
