@@ -69,8 +69,8 @@ languages:
 
 # donate
 donate:
-  wechat: 'static/img/pay/wechat.png'
-  alipay: 'static/img/pay/alipay.png'
+  # wechat: 'static/img/pay/wechat.png'
+  # alipay: 'static/img/pay/alipay.png'
 
 # comment
 changyan:
