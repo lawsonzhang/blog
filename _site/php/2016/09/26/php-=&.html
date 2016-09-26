@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+
+	
+	    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <meta content="php引用 =& 详解" name="description">
+  
+  
+    <meta name="keywords" content="php, =&, 引用">
+  
+  <meta name="author" content="Lawsonzhang">
+
+  <title>
+    
+        Lawsonzhang's Homepage|php &=
+    
+  </title>
+  <!-- favicon -->
+  <link rel="shortcut icon" href="/static/img/favicon.ico">
+
+  <!-- Third-party CSS -->
+  <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/bower_components/animate.css/animate.min.css" rel="stylesheet">
+  <link href="/bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/static/font-mfizz/font-mfizz.css" rel="stylesheet">
+  <link href="/bower_components/toastr/toastr.min.css" rel="stylesheet">
+  <link href="/bower_components/jquery.gritter/css/jquery.gritter.css" rel="stylesheet">
+  <link rel="stylesheet" href="/search/css/cb-search.css">
+
+  <!-- Custom styles for this template -->
+  <link href="/static/css/style.min.css" rel="stylesheet">
+  <link href="/static/css/pygments.css" rel="stylesheet">
+
+  <!-- Scripts -->
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/search/js/bootstrap3-typeahead.min.js"></script>
+
+  <!-- cb-search -->
+  <script src="/search/js/cb-search.js"></script>
+  <script>
+    $(function(){
+        $("pre").css('display','block');
+    });
+  </script>
+  <!-- Mainly scripts -->
+  <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+  <script src="/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+
+  <!-- Peity -->
+  <script src="/bower_components/peity/jquery.peity.min.js"></script>
+
+  <script src="/bower_components/PACE/pace.min.js"></script>
+  <script src="/bower_components/wow/dist/wow.min.js"></script>
+  <!-- Custom and plugin javascript -->
+  <script src="/static/js/inspinia.js"></script>
+
+  <!-- Rickshaw -->
+  <script src="/bower_components/rickshaw/vendor/d3.v3.js"></script>
+  <script src="/bower_components/rickshaw/rickshaw.min.js"></script>
+
+
+  <!-- jPages -->
+  <script src="/static/js/jPages.js"></script>
+  <script src="/static/js/js.js"></script>
+  <script id="dsq-count-scr" src="//jalpc.disqus.com/count.js" async></script>
+  <script type="text/javascript">
+        $(function(){
+          /* initiate the plugin */
+          $("div.pag-holder").jPages({
+              containerID  : "pag-itemContainer",
+              perPage      : 5,  /* num of items per page */
+              startPage    : 1,
+              startRange   : 1,
+              midRange     : 3,
+              endRange     : 1
+          });
+      });
+  </script>
+</head>
+
+	
+
+
+<body id="page-top" class="landing-page">
+
+	
+	    <div class="search-tool" style="position: fixed; top: 0px ; bottom: 0px; left: 0px; right:  0px;
+      opacity: 0.95; background-color: #111111; z-index: 9999; display: none;">
+    <input type="text" class="form-control search-content" id="search-content" style="position: fixed; top: 60px"
+           placeholder="Search Blog"
+           >
+
+    <div style="position: fixed; top: 16px; right: 16px; z-index: 9999;">
+        <img src="/search/img/cb-close.png"  id="close-btn"/>
+    </div>
+</div>
+
+<div style="position: fixed; right: 16px; bottom: 20px; z-index: 9999;">
+    <img src="/search/img/cb-search.png"  id="search-btn"  title="Double click Ctrl"/>
+</div>
+
+<div class="navbar-wrapper">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Lawsonzhang's Homepage</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="page-scroll" href="/blog/"></a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/blog/">Blog</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/php/">PHP</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/linux/">Linux</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/javascript/">Javascript</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/mysql/">MySQL</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/nosql/">NoSQL</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/life/">Life</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+</div>
+<div id="inSlider" class="carousel carousel-fade" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#inSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#inSlider" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <div class="container">
+                <div class="carousel-caption">
+                </div>
+                <div class="carousel-image wow zoomIn">
+                    <!-- <img src="static/img/landing/laptop.png" alt="laptop"/> -->
+                </div>
+            </div>
+            <!-- Set background for slide in css -->
+            <div class="header-back one"></div>
+
+        </div>
+        <div class="item">
+            <div class="container">
+                <div class="carousel-caption blank">
+                </div>
+            </div>
+            <!-- Set background for slide in css -->
+            <div class="header-back two"></div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#inSlider" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#inSlider" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+	
+
+    <div class="wrapper wrapper-content  animated fadeInRight article">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="pull-right">
+                    	
+                        	<button class="btn btn-white btn-xs" type="button">PHP</button>
+                        
+                    </div>
+                    <div class="text-center article-title">
+                    <span class="text-muted"><i class="fa fa-clock-o"></i> 26 Sep 2016</span>
+                        <h1>
+                            php &=
+                        </h1>
+                    </div>
+                    	<h3 id="section">引用是什么</h3>
+<hr />
+<blockquote>
+  <p>在 PHP 中引用意味着用不同的名字访问同一个变量内容。这并不像 C 的指针，它们是符号表别名。注意在 PHP 中，变量名和变量内容是不一样的，因此同样的内容可以有不同的名字。最接近的比喻是 Unix 的文件名和文件本身 － 变量名是目录条目，而变量内容则是文件本身。引用可以被看作是 Unix 文件系统中的紧密连接。</p>
+</blockquote>
+
+<h3 id="section-1">引用做什么</h3>
+<hr />
+<blockquote>
+  <p>PHP 的引用允许你用两个变量来指向同一个内容。</p>
+</blockquote>
+
+<blockquote>
+  <p>意思是，当你这样做时：</p>
+  <div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$a</span> <span class="o">=&amp;</span> <span class="nv">$b</span>
+<span class="cp">?&gt;</span> 
+</code></pre>
+  </div>
+  <p>这意味着 $a 和 $b 指向了同一个变量。</p>
+  <h5 id="a--b--a--b--a--b-"><code class="highlighter-rouge">注: $a 和 $b 在这里是完全相同的，这并不是 $a 指向了 $b 或者相反，而是 $a 和 $b 指向了同一个地方。</code></h5>
+
+  <p>同样的语法可以用在函数中，它返回引用，以及用在 new 运算符中（PHP 4.0.4 以及以后版本）：</p>
+  <div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$bar</span> <span class="o">=&amp;</span> <span class="k">new</span> <span class="nx">fooclass</span><span class="p">();</span>
+    <span class="nv">$foo</span> <span class="o">=&amp;</span> <span class="nx">find_var</span> <span class="p">(</span><span class="nv">$bar</span><span class="p">);</span>
+<span class="cp">?&gt;</span> 
+</code></pre>
+  </div>
+  <h5 id="this---this--"><code class="highlighter-rouge">注: 不用 &amp; 运算符导致对象生成了一个拷贝。如果你在类中用 $this，它将作用于该类当前的实例。没有用 &amp; 的赋值将拷贝这个实例（例如对象）并且 $this 将作用于这个拷贝上，这并不总是想要的结果。由于性能和内存消耗的问题，通常你只想工作在一个实例上面。</code></h5>
+
+  <p>尽管你可以用 @ 运算符来关闭构造函数中的任何错误信息，例如用 @new，但用 &amp;new 语句时这不起效果。这是 Zend 引擎的一个限制并且会导致一个解析错误。</p>
+
+  <p>引用做的第二件事是用引用传递变量。这是通过在函数内建立一个本地变量并且该变量在呼叫范围内引用了同一个内容来实现的。例如：</p>
+  <div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+    <span class="k">function</span> <span class="nf">foo</span> <span class="p">(</span><span class="o">&amp;</span><span class="nv">$var</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$var</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nv">$a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="nx">foo</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
+<span class="cp">?&gt;</span> 
+</code></pre>
+  </div>
+  <p>将使 $a 变成 6。这是因为在 foo 函数中变量 $var 指向了和 $a 指向的同一个内容。更多详细解释见引用传递。</p>
+
+  <p>引用做的第三件事是引用返回。</p>
+</blockquote>
+
+<h3 id="section-2">引用不是什么</h3>
+<hr />
+<blockquote>
+  <p>如前所述，引用不是指针。</p>
+</blockquote>
+
+<blockquote>
+  <p>这意味着下面的结构不会产生你预期的效果：</p>
+  <div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+    <span class="k">function</span> <span class="nf">foo</span> <span class="p">(</span><span class="o">&amp;</span><span class="nv">$var</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$var</span> <span class="o">=&amp;</span> <span class="nv">$GLOBALS</span><span class="p">[</span><span class="s2">"baz"</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="nx">foo</span><span class="p">(</span><span class="nv">$bar</span><span class="p">);</span>
+<span class="cp">?&gt;</span> 
+</code></pre>
+  </div>
+  <p>这将使 foo 函数中的 $var 变量在函数调用时和 $bar 绑定在一起，但接着又被重新绑定到了 $GLOBALS[“baz”] 上面。</p>
+
+  <p>不可能通过引用机制将 $bar 在函数调用范围内绑定到别的变量上面，因为在函数 foo 中并没有变量 $bar（它被表示为 $var，但是 $var 只有变量内容而没有调用符号表中的名字到值的绑定）。</p>
+</blockquote>
+
+<h3 id="section-3">引用传递</h3>
+<hr />
+<blockquote>
+  <p>你可以将一个变量通过引用传递给函数，这样该函数就可以修改其参数的值。</p>
+</blockquote>
+
+<blockquote>
+  <p>语法如下：</p>
+  <div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+    <span class="k">function</span> <span class="nf">foo</span> <span class="p">(</span><span class="o">&amp;</span><span class="nv">$var</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$var</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nv">$a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="nx">foo</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
+    <span class="c1">// $a is 6 here
+</span><span class="cp">?&gt;</span>
+</code></pre>
+  </div>
+  <p>注意在函数调用时没有引用符号 － 只有函数定义中有。光是函数定义就足够使参数通过引用来正确传递了。</p>
+
+  <p>以下内容可以通过引用传递</p>
+
+  <p>变量，例如 foo($a)</p>
+
+  <p>New 语句，例如 foo(new foobar())</p>
+
+  <p>从函数中返回的引用，例如：</p>
+  <div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+    <span class="k">function</span> <span class="o">&amp;</span><span class="nf">bar</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nv">$a</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">foo</span><span class="p">(</span><span class="nx">bar</span><span class="p">());</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+  </div>
+  <p>详细解释见引用返回。</p>
+
+  <p>任何其它表达式都不能通过引用传递，结果未定义。例如下面引用传递的例子是无效的：</p>
+  <div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+    <span class="k">function</span> <span class="nf">bar</span><span class="p">()</span> <span class="c1">// Note the missing &amp;
+</span>    <span class="p">{</span>
+        <span class="nv">$a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nv">$a</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">foo</span><span class="p">(</span><span class="nx">bar</span><span class="p">());</span>
+    <span class="nx">foo</span><span class="p">(</span><span class="nv">$a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">// 表达式，不是变量
+</span>    <span class="nx">foo</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 常量，不是变量
+</span><span class="cp">?&gt;</span> 
+</code></pre>
+  </div>
+  <p>这些条件是 PHP 4.0.4 以及以后版本有的。</p>
+</blockquote>
+
+<h3 id="section-4">引用返回</h3>
+<hr />
+<blockquote>
+  <p>引用返回用在当你想用函数找到引用应该被绑定在哪一个变量上面时。</p>
+</blockquote>
+
+<blockquote>
+  <p>当返回引用时，使用此语法：</p>
+  <div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+    <span class="k">function</span> <span class="o">&amp;</span><span class="nf">find_var</span> <span class="p">(</span><span class="nv">$param</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="cm">/* ...code... */</span>
+        <span class="k">return</span> <span class="nv">$found_var</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nv">$foo</span> <span class="o">=&amp;</span> <span class="nx">find_var</span><span class="p">(</span><span class="nv">$bar</span><span class="p">);</span>
+    <span class="nv">$foo</span><span class="o">-&gt;</span><span class="na">x</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="cp">?&gt;</span> 
+</code></pre>
+  </div>
+
+  <p>本例中 find_var 函数所返回的对象的属性将被设定（译者：指的是 $foo-&gt;x = 2; 语句），而不是拷贝，就和没有用引用语法一样。</p>
+  <h5 id="foo-"><code class="highlighter-rouge">注: 和参数传递不同，这里必须在两个地方都用 &amp; 符号 － 来指出返回的是一个引用，而不是通常的一个拷贝，同样也指出 $foo 是作为引用的绑定，而不是通常的赋值。</code></h5>
+</blockquote>
+
+<h3 id="section-5">取消引用</h3>
+<hr />
+<blockquote>
+  <p>当你 unset 一个引用，只是断开了变量名和变量内容之间的绑定。</p>
+</blockquote>
+
+<blockquote>
+  <p>这并不意味着变量内容被销毁了。例如：</p>
+  <div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="nv">$b</span> <span class="o">=&amp;</span> <span class="nv">$a</span><span class="p">;</span>
+    <span class="nb">unset</span> <span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
+<span class="cp">?&gt;</span> 
+</code></pre>
+  </div>
+  <p>不会 unset $b，只是 $a。</p>
+
+  <p>再拿这个和 Unix 的 unlink 调用来类比一下可能有助于理解。</p>
+</blockquote>
+
+<h3 id="section-6">引用定位</h3>
+<hr />
+<blockquote>
+  <p>许多 PHP 的语法结构是通过引用机制实现的，所以上述有关引用绑定的一切也都适用于这些结构。</p>
+</blockquote>
+
+<blockquote>
+  <p>一些结构，例如引用传递和返回，已经在上面提到了。其它使用引用的结构有：</p>
+
+  <p>global 引用</p>
+
+  <p>当用 global $var 声明一个变量时实际上建立了一个到全局变量的引用。也就是说和这样做是相同的：</p>
+  <div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$var</span> <span class="o">=&amp;</span> <span class="nv">$GLOBALS</span><span class="p">[</span><span class="s2">"var"</span><span class="p">];</span>
+<span class="cp">?&gt;</span> 
+</code></pre>
+  </div>
+  <p>这意味着，例如，unset $var 不会 unset 全局变量</p>
+
+  <p>$this在一个对象的方法中，$this 永远是调用它的对象的引用。</p>
+  <div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+	<span class="sd">/**
+	 * (C) CopyRight 2008 MagicToolBox - www.magictoolbox.com - support@magictoolbox.com
+	**/</span>
+	<span class="k">require_once</span><span class="p">(</span><span class="nx">DIR_FS_CATALOG</span> <span class="o">.</span> <span class="nx">DIR_WS_MODULES</span> <span class="o">.</span> <span class="s1">'magictoolbox/magictoolbox_addons.php'</span><span class="p">);</span>
+	<span class="nv">$mod</span> <span class="o">=</span> <span class="nx">magictoolboxLoadModule</span><span class="p">(</span><span class="s1">'MagicZoomPlus'</span><span class="p">);</span>
+	<span class="nv">$enabled</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+	<span class="nv">$main_page</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'main_page'</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'main_page'</span><span class="p">]</span> <span class="o">:</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'main_page'</span><span class="p">];</span>
+	<span class="nv">$cPath</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'cPath'</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'cPath'</span><span class="p">]</span> <span class="o">:</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'cPath'</span><span class="p">];</span>
+	<span class="nv">$products_id</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'products_id'</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'products_id'</span><span class="p">]</span> <span class="o">:</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'products_id'</span><span class="p">];</span>
+	<span class="nv">$scroll</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+	<span class="k">if</span><span class="p">(</span><span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">type</span> <span class="o">==</span> <span class="s1">'standard'</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">params</span><span class="o">-&gt;</span><span class="na">checkValue</span><span class="p">(</span><span class="s1">'template'</span><span class="p">,</span> <span class="s1">'original'</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">params</span><span class="o">-&gt;</span><span class="na">checkValue</span><span class="p">(</span><span class="s1">'magicscroll'</span><span class="p">,</span> <span class="s1">'yes'</span><span class="p">))</span> <span class="p">{</span>
+	    <span class="nv">$scroll</span> <span class="o">=</span> <span class="nx">magictoolboxLoadModule</span><span class="p">(</span><span class="s1">'magicscroll'</span><span class="p">);</span>
+	<span class="err">　　</span><span class="nv">$scroll</span><span class="o">-&gt;</span><span class="na">params</span><span class="o">-&gt;</span><span class="na">appendArray</span><span class="p">(</span><span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">params</span><span class="o">-&gt;</span><span class="na">getArray</span><span class="p">());</span>
+	<span class="nv">$scroll</span><span class="o">-&gt;</span><span class="na">params</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">'direction'</span><span class="p">,</span> <span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">params</span><span class="o">-&gt;</span><span class="na">checkValue</span><span class="p">(</span><span class="s1">'template'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'left'</span><span class="p">,</span> <span class="s1">'right'</span><span class="p">))</span> <span class="o">?</span> <span class="s1">'bottom'</span> <span class="o">:</span> <span class="s1">'right'</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">if</span><span class="p">(</span><span class="nx">ZEN_MAGICZOOMPLUS_STATUS</span> <span class="o">==</span> <span class="s1">'true'</span><span class="p">)</span> <span class="p">{</span>
+	    <span class="nv">$enable_on_block</span> <span class="o">=</span>  <span class="o">!</span><span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">params</span><span class="o">-&gt;</span><span class="na">checkValue</span><span class="p">(</span><span class="s1">'use-effect-on-whats-new-block'</span><span class="p">,</span> <span class="s1">'No'</span><span class="p">)</span> <span class="o">||</span>
+	                        <span class="o">!</span><span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">params</span><span class="o">-&gt;</span><span class="na">checkValue</span><span class="p">(</span><span class="s1">'use-effect-on-specials-block'</span><span class="p">,</span> <span class="s1">'No'</span><span class="p">)</span> <span class="o">||</span>
+	                        <span class="o">!</span><span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">params</span><span class="o">-&gt;</span><span class="na">checkValue</span><span class="p">(</span><span class="s1">'use-effect-on-featured-block'</span><span class="p">,</span> <span class="s1">'No'</span><span class="p">);</span>
+	    <span class="k">if</span><span class="p">(</span><span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">type</span> <span class="o">==</span> <span class="s1">'standard'</span><span class="p">)</span> <span class="p">{</span>
+	        <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="nb">intval</span><span class="p">(</span><span class="nv">$cPath</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">params</span><span class="o">-&gt;</span><span class="na">checkValue</span><span class="p">(</span><span class="s1">'use-effect-on-category-page'</span><span class="p">,</span> <span class="s1">'No'</span><span class="p">)</span> <span class="o">||</span> <span class="nv">$enable_on_block</span><span class="p">))</span> <span class="o">||</span> <span class="c1">// category page
+</span>	            <span class="p">(</span><span class="nb">intval</span><span class="p">(</span><span class="nv">$products_id</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">params</span><span class="o">-&gt;</span><span class="na">checkValue</span><span class="p">(</span><span class="s1">'use-effect-on-product-page'</span><span class="p">,</span> <span class="s1">'No'</span><span class="p">)</span> <span class="o">||</span> <span class="nv">$enable_on_block</span><span class="p">))</span> <span class="o">||</span> <span class="c1">// product page
+</span>	            <span class="p">(</span><span class="nv">$main_page</span> <span class="o">==</span> <span class="s1">'products_new'</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">params</span><span class="o">-&gt;</span><span class="na">checkValue</span><span class="p">(</span><span class="s1">'use-effect-on-products-new-page'</span><span class="p">,</span> <span class="s1">'No'</span><span class="p">)</span> <span class="o">||</span> <span class="nv">$enable_on_block</span><span class="p">))</span> <span class="o">||</span>
+	            <span class="p">(</span><span class="nv">$main_page</span> <span class="o">==</span> <span class="s1">'products_all'</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">params</span><span class="o">-&gt;</span><span class="na">checkValue</span><span class="p">(</span><span class="s1">'use-effect-on-products-all-page'</span><span class="p">,</span> <span class="s1">'No'</span><span class="p">)</span> <span class="o">||</span> <span class="nv">$enable_on_block</span><span class="p">))</span> <span class="o">||</span>
+	            <span class="p">(</span><span class="nv">$main_page</span> <span class="o">==</span> <span class="s1">'advanced_search_result'</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">params</span><span class="o">-&gt;</span><span class="na">checkValue</span><span class="p">(</span><span class="s1">'use-effect-on-products-search-page'</span><span class="p">,</span> <span class="s1">'No'</span><span class="p">)</span> <span class="o">||</span> <span class="nv">$enable_on_block</span><span class="p">))</span>
+	        <span class="p">)</span> <span class="p">{</span>
+	            <span class="nv">$enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+	        <span class="p">}</span>
+	    <span class="p">}</span> <span class="k">elseif</span><span class="p">(</span><span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">type</span> <span class="o">==</span> <span class="s1">'category'</span> <span class="o">||</span> <span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">type</span> <span class="o">==</span> <span class="s1">'circle'</span><span class="p">)</span> <span class="p">{</span>
+	        <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="nb">intval</span><span class="p">(</span><span class="nv">$products_id</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">params</span><span class="o">-&gt;</span><span class="na">checkValue</span><span class="p">(</span><span class="s1">'use-effect-on-product-page'</span><span class="p">,</span> <span class="s1">'No'</span><span class="p">)</span> <span class="o">||</span> <span class="nv">$enable_on_block</span><span class="p">))</span> <span class="o">||</span> <span class="c1">// product page
+</span>	            <span class="p">(</span><span class="nb">intval</span><span class="p">(</span><span class="nv">$cPath</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nv">$enable_on_block</span><span class="p">)</span> <span class="o">||</span> <span class="c1">// category page
+</span>	            <span class="p">(</span><span class="nv">$main_page</span> <span class="o">==</span> <span class="s1">'products_new'</span> <span class="o">&amp;&amp;</span> <span class="nv">$enable_on_block</span><span class="p">)</span> <span class="o">||</span>
+	            <span class="p">(</span><span class="nv">$main_page</span> <span class="o">==</span> <span class="s1">'products_all'</span> <span class="o">&amp;&amp;</span> <span class="nv">$enable_on_block</span><span class="p">)</span> <span class="o">||</span>
+	            <span class="p">(</span><span class="nv">$main_page</span> <span class="o">==</span> <span class="s1">'advanced_search_result'</span> <span class="o">&amp;&amp;</span> <span class="nv">$enable_on_block</span><span class="p">)</span>
+	        <span class="p">)</span> <span class="p">{</span>
+	            <span class="nv">$enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+	        <span class="p">}</span>
+	    <span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$GLOBALS</span><span class="p">[</span><span class="s2">"MAGICZOOMPLUS_HEADERS_LOADED"</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nv">$enabled</span><span class="p">)</span> <span class="p">{</span>
+	    <span class="k">echo</span> <span class="nv">$mod</span><span class="o">-&gt;</span><span class="na">headers</span><span class="p">(</span><span class="nx">DIR_WS_CATALOG</span> <span class="o">.</span> <span class="nx">DIR_WS_TEMPLATE</span> <span class="o">.</span> <span class="s1">'jscript'</span><span class="p">,</span> <span class="nx">DIR_WS_CATALOG</span> <span class="o">.</span> <span class="nx">DIR_WS_TEMPLATE</span> <span class="o">.</span> <span class="s1">'css'</span><span class="p">);</span>
+	    <span class="k">if</span><span class="p">(</span><span class="nv">$scroll</span><span class="p">)</span> <span class="p">{</span>
+	        <span class="k">echo</span> <span class="nv">$scroll</span><span class="o">-&gt;</span><span class="na">headers</span><span class="p">(</span><span class="nx">DIR_WS_CATALOG</span> <span class="o">.</span> <span class="nx">DIR_WS_TEMPLATE</span> <span class="o">.</span> <span class="s1">'jscript'</span><span class="p">,</span> <span class="nx">DIR_WS_CATALOG</span> <span class="o">.</span> <span class="nx">DIR_WS_TEMPLATE</span> <span class="o">.</span> <span class="s1">'css'</span><span class="p">);</span>
+	    <span class="p">}</span>
+	    <span class="nv">$GLOBALS</span><span class="p">[</span><span class="s2">"MAGICZOOMPLUS_HEADERS_LOADED"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+  </div>
+</blockquote>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                                <h5 style="display: inline;">Tags:</h5>
+                                
+                                    <button class="btn btn-white btn-xs" type="button">php</button>
+                                
+                        </div>
+                        <div class="col-md-6">
+                            <div class="small text-right">
+                                <h5>Stats:</h5>
+                                <div> 
+                                
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- donate -->
+                            
+                            <br>
+                            <!-- share -->
+                            
+                            <br>
+                            <!-- comment -->
+                            
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+	
+	    <script src="/static/js/scroll.js"></script>
+
+<!-- Baidu analytics -->
+
+
+<!-- Google analytics -->
+
+
+
+
+
+
+<script async src="/static/js/count_page.js"></script>
+
+	
+
+</body>
+</html>

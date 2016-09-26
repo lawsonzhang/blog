@@ -207,12 +207,49 @@
 		<ul id="pag-itemContainer" style="list-style:none;">
     
 		
+		
+		<li>
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <a href="/php/2016/09/26/php-=&.html" class="btn-link">
+                        <h2>
+                            php &=
+                        </h2>
+                    </a>
+                    <div class="small m-b-xs">
+                        <strong>Lawsonzhang</strong> <span class="text-muted"><i class="fa fa-clock-o"></i> 26 Sep 2016</span>
+                    </div>
+                    <p>
+                    	引用是什么
+
+
+  在 PHP 中引用意味着用不同的名字访问同一个变量内容。这并不像 C 的指针，它们是符号表别名。注意在 PHP 中，变量名和变量内容是不一样的，因此同样的内容可以有不同的名字...
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6">
+                                <h5 style="display: inline;">Tags:</h5>
+                                
+                                    <button class="btn btn-white btn-xs" type="button">php</button>
+                                
+                        </div>
+                        <div class="col-md-6">
+                            <div class="small text-right">
+                                <h5>Stats:</h5>
+                                <div> 
+                                
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </li>
+        
         </ul>
         
-
-    <div class="col-lg-8 col-lg-offset-2">
-		<p>Sorry,no blog！</p>
-    </div>
 
 
 
@@ -225,58 +262,10 @@
 
 <!-- Baidu analytics -->
 
-  <script>
-      var _hmt = _hmt || [];
-      (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?317acca9ef9255b934e46371e471431d";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-  </script>
-
 
 <!-- Google analytics -->
 
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-73784599-1', 'auto');
-    ga('send', 'pageview');
-
-  </script>
-
-
-
-  <script type="text/javascript">
-    var disqusShortName = "jalpc";
-
-    var disqusPublicKey = "tj2MPaNlHMONwTH5bGDNSXyaBpW7q282MeUzh5CwcjJerNhK8Kxk3aWo7IckzTX7";
-
-    var urlArray = [];
-    $('.disqus-comment-count').each(function () {
-      var url = $(this).attr('data-disqus-url');
-      urlArray.push('link:' + url);
-    });
-    $.ajax({
-      type: 'GET',
-      url: "https://disqus.com/api/3.0/threads/set.jsonp",
-      data: { api_key: disqusPublicKey, forum : disqusShortName, thread : urlArray },
-      cache: false,
-      dataType: "jsonp",
-      success: function (result) {
-        for (var i in result.response) {
-          var count = result.response[i].posts;
-          if ( count ) {
-            $('.disqus-comment-count[data-disqus-url="' + result.response[i].link + '"]').html(count);
-          }
-        }
-      }
-    });
-</script>
 
 
 
