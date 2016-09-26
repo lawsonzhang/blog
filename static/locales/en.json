@@ -25,17 +25,17 @@
   "career":{
     "my_career": "My Career",
     "pandaee": "Pandaee",
-    "pandaee_des": "Now I am in Pandaee and develop website with PHP code for genetic analysis.",
+    "pandaee_des": "Now I am in Pandaee and develop website with PHP code for Live shopping.",
     "pandaee_date": "Jun. 2016",
     "pandaee_job": "PHP Developer",
 
     "freshfresh": "Freshfresh",
-    "freshfresh_des": "In Freshfresh, I learned game service system and use PHP code for ops.",
+    "freshfresh_des": "This is my first job in ShangHai, I just develop shopping website with magento secondary development.",
     "freshfresh_date": "July. 2015",
     "freshfresh_job": "PHP Developer",
 
     "befound": "Befound",
-    "befound_des": "In Befound, I started to deal with servers and Linux system and use shell scripts to manage massive server.",
+    "befound_des": "In Befound, I started to be a PHPer, this is my first job. I have developed a portal and a forum with discuz X3.0.",
     "befound_date": "May. 2012",
     "befound_job": "PHP Developer"
   },

@@ -2,7 +2,7 @@
     detail: Pandaee
     i18n: pandaee
   desc:
-    detail: Now I am in Nextcode and develop website with Python code for genetic analysis.
+    detail: Now I am in Pandaee and develop website with PHP code for Live shopping.
     i18n: pandaee_des
   date:
     detail: Jun. 2016
@@ -16,7 +16,7 @@
     detail: Freshfresh
     i18n: freshfresh
   desc:
-    detail: In Freshfresh, I learned game service system and use Python code for ops.
+    detail: This is my first job in ShangHai, I just develop shopping website with magento secondary development.
     i18n: freshfresh_des
   date:
     detail: Jul. 2015
@@ -30,7 +30,7 @@
     detail: Befound
     i18n: befound
   desc:
-    detail: In Befound, I started to deal with servers and Linux system and use shell scripts to manage massive server.
+    detail: In Befound, I started to be a PHPer, this is my first job. I have developed a portal and a forum with discuz X3.0.
     i18n: befound_des
   date:
     detail: May. 2012
