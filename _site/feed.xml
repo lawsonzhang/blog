@@ -5,9 +5,73 @@
     <description>Lawson's blog,first step, second step...</description>
     <link>http://blog.lehehe.me//</link>
     <atom:link href="http://blog.lehehe.me//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 26 Sep 2016 17:37:50 +0800</pubDate>
-    <lastBuildDate>Mon, 26 Sep 2016 17:37:50 +0800</lastBuildDate>
+    <pubDate>Tue, 27 Sep 2016 13:55:51 +0800</pubDate>
+    <lastBuildDate>Tue, 27 Sep 2016 13:55:51 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>技能树</title>
+        <description>&lt;h2 id=&quot;php&quot;&gt;PHP&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;框架&lt;/li&gt;
+  &lt;li&gt;调试&lt;/li&gt;
+  &lt;li&gt;web安全&lt;/li&gt;
+  &lt;li&gt;设计模式&lt;/li&gt;
+  &lt;li&gt;php-cgi php-fpm&lt;/li&gt;
+  &lt;li&gt;扩展&lt;/li&gt;
+  &lt;li&gt;性能优化&lt;/li&gt;
+  &lt;li&gt;内部实现(life cycle)&lt;/li&gt;
+  &lt;li&gt;单元测试&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;mysql&quot;&gt;mysql&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;普通语句&lt;/li&gt;
+  &lt;li&gt;复杂语句&lt;/li&gt;
+  &lt;li&gt;内置函数和运算&lt;/li&gt;
+  &lt;li&gt;存储过程和视图&lt;/li&gt;
+  &lt;li&gt;优化
+    &lt;ol&gt;
+      &lt;li&gt;表结构优化&lt;/li&gt;
+      &lt;li&gt;存储引擎&lt;/li&gt;
+      &lt;li&gt;sql优化&lt;/li&gt;
+      &lt;li&gt;索引优化&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;复制(replication)&lt;/li&gt;
+  &lt;li&gt;mysql管理、权限、日志&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;nosql&quot;&gt;nosql&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;redis&lt;/li&gt;
+  &lt;li&gt;memcached&lt;/li&gt;
+  &lt;li&gt;mongodb&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;网络与架构&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;负载均衡&lt;/li&gt;
+  &lt;li&gt;反向代理&lt;/li&gt;
+  &lt;li&gt;消息系统&lt;/li&gt;
+  &lt;li&gt;分布式存储&lt;/li&gt;
+  &lt;li&gt;分布式计算&lt;/li&gt;
+  &lt;li&gt;cdn&lt;/li&gt;
+  &lt;li&gt;plp&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;linux&quot;&gt;linux&lt;/h2&gt;
+</description>
+        <pubDate>Tue, 27 Sep 2016 00:00:00 +0800</pubDate>
+        <link>http://blog.lehehe.me//php/2016/09/27/php-skilltree.html</link>
+        <guid isPermaLink="true">http://blog.lehehe.me//php/2016/09/27/php-skilltree.html</guid>
+        
+        <category>php</category>
+        
+        
+        <category>PHP</category>
+        
+      </item>
     
       <item>
         <title>php &amp;=</title>
