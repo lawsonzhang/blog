@@ -74,6 +74,8 @@ donate:
 
 # comment
 changyan:
+  appid: cysEteUF0
+  conf: prod_b04efdcd652c29f9e4806ecb14edd799
   # appid: cysfY7ULn
   # conf: prod_861928934cecb7a18e15bedaed9dae29
 disqus:
