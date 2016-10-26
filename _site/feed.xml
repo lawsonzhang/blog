@@ -5,13 +5,13 @@
     <description>Lawson's blog,first step, second step...</description>
     <link>http://blog.lehehe.me//</link>
     <atom:link href="http://blog.lehehe.me//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 26 Oct 2016 11:32:32 +0800</pubDate>
-    <lastBuildDate>Wed, 26 Oct 2016 11:32:32 +0800</lastBuildDate>
+    <pubDate>Wed, 26 Oct 2016 11:55:23 +0800</pubDate>
+    <lastBuildDate>Wed, 26 Oct 2016 11:55:23 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
         <title>秒杀、抢购活动设计</title>
-        <description>&lt;h3 id=&quot;section&quot;&gt;&lt;strong&gt;秒杀阶段分析&lt;/strong&gt;&lt;/h3&gt;
+        <description>&lt;h2 id=&quot;section&quot;&gt;&lt;strong&gt;秒杀阶段分析&lt;/strong&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;ul&gt;
     &lt;li&gt;秒杀前：用户访问宝贝描述页，不断刷新，等待秒杀开始&lt;/li&gt;
@@ -20,7 +20,7 @@
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;&lt;strong&gt;难度挑战&lt;/strong&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;section-1&quot;&gt;&lt;strong&gt;难度挑战&lt;/strong&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;ul&gt;
     &lt;li&gt;秒杀前：大量用户频发刷新秒杀页面，都想第一个看到秒杀开始，越临近开始时间。刷新越频繁，这时候系统会承受巨大的读压力&lt;/li&gt;
@@ -29,9 +29,9 @@
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;section-2&quot;&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;section-2&quot;&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;section-3&quot;&gt;&lt;strong&gt;服务器分制思想&lt;/strong&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
-  &lt;h5 id=&quot;section-3&quot;&gt;服务器分制思想&lt;/h5&gt;
   &lt;ul&gt;
     &lt;li&gt;LVS、&lt;a href=&quot;http://blog.lehehe.me/blog/&quot;&gt;Nginx反向代理&lt;/a&gt;等增强服务器的抗压能力&lt;/li&gt;
     &lt;li&gt;增加服务器的带宽&lt;/li&gt;
@@ -40,47 +40,64 @@
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
+&lt;h3 id=&quot;section-4&quot;&gt;&lt;strong&gt;库存管理&lt;/strong&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
-  &lt;h5 id=&quot;section-4&quot;&gt;库存管理&lt;/h5&gt;
   &lt;p&gt;抢购秒杀最容易出现的库存管理问题，例如超卖等&lt;/p&gt;
 
   &lt;p&gt;&lt;strong&gt;[1]: MySQL数据库(基于事务(transcation)的原子性)&lt;/strong&gt;&lt;/p&gt;
 
   &lt;ul&gt;
-    &lt;li&gt;悲观锁&lt;/li&gt;
+    &lt;li&gt;悲观锁
+      &lt;blockquote&gt;
+
+        &lt;ol&gt;
+          &lt;li&gt;
+            &lt;p&gt;利用MySQL innodb引擎的写独占锁&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;strong&gt;SELECT&lt;/strong&gt; * FROM table_name &lt;strong&gt;FOR UPDATE&lt;/strong&gt;;    UPDATE table_name SET field_name = field_value - 1;&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/blockquote&gt;
+    &lt;/li&gt;
+    &lt;li&gt;乐观锁
+      &lt;blockquote&gt;
+
+        &lt;ol&gt;
+          &lt;li&gt;
+            &lt;p&gt;乐观的认为我每一次更新库存都不会因为并发而产生多扣库存，当一旦发现多扣产生，就执行数据回滚&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;先执行UPDATE库存操作，发现库存小于0就执行回滚(&lt;strong&gt;rollback&lt;/strong&gt;)&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/blockquote&gt;
+    &lt;/li&gt;
   &lt;/ul&gt;
-
-  &lt;p&gt;利用MySQL innodb引擎的写独占锁&lt;/p&gt;
-
-  &lt;p&gt;&lt;strong&gt;SELECT&lt;/strong&gt; * FROM table_name &lt;strong&gt;FOR UPDATE&lt;/strong&gt;;    UPDATE table_name SET field_name = field_value - 1;&lt;/p&gt;
-
-  &lt;ul&gt;
-    &lt;li&gt;乐观锁&lt;/li&gt;
-  &lt;/ul&gt;
-
-  &lt;p&gt;乐观的认为我每一次更新库存都不会因为并发而产生多扣库存，当一旦发现多扣产生，就执行数据回滚&lt;/p&gt;
-
-  &lt;p&gt;先执行UPDATE库存操作，发现库存小于0就执行回滚(&lt;strong&gt;rollback&lt;/strong&gt;)&lt;/p&gt;
 
   &lt;p&gt;&lt;strong&gt;[2]: NOSQL(Redis)&lt;/strong&gt;&lt;/p&gt;
+  &lt;blockquote&gt;
 
-  &lt;p&gt;Redis支持list类型存储，使用push、pop入列和出列，抢购库存大可分多条队列并行&lt;/p&gt;
+    &lt;p&gt;Redis支持list类型存储，使用push、pop入列和出列，抢购库存大可分多条队列并行&lt;/p&gt;
 
-  &lt;p&gt;进入队列后的用户可以排队下单&lt;/p&gt;
+    &lt;p&gt;进入队列后的用户可以排队下单，进入等待秒杀页面，未进入队列直接跳转活动结束页面&lt;/p&gt;
 
-  &lt;p&gt;用PHP书写守护进程，while无限循环pop队列数据，执行下单操作&lt;/p&gt;
+    &lt;p&gt;用PHP书写守护进程，while无限循环pop队列数据，执行下单操作&lt;/p&gt;
 
-  &lt;p&gt;也可以用其他MQ实现消息队列功能&lt;/p&gt;
+    &lt;p&gt;也可以用其他MQ实现消息队列功能&lt;/p&gt;
 
-  &lt;p&gt;这里还有一种以Redis为主，舍弃关系型数据库参与秒杀的方式&lt;/p&gt;
+    &lt;p&gt;这里还有一种以Redis为主，舍弃关系型数据库参与秒杀的方式&lt;/p&gt;
 
-  &lt;ul&gt;
-    &lt;li&gt;活动开始前先将秒杀的参与库存从总库存中去除，并加入Redis库存之中&lt;/li&gt;
-    &lt;li&gt;使用Redis的get和set操作Redis中的库存(Redis也支持transaction)&lt;/li&gt;
-    &lt;li&gt;秒杀活动下单执行另外一套扣除Redis库存逻辑&lt;/li&gt;
-  &lt;/ul&gt;
+    &lt;blockquote&gt;
+      &lt;ul&gt;
+        &lt;li&gt;活动开始前先将秒杀的参与库存从总库存中去除，并加入Redis库存之中&lt;/li&gt;
+        &lt;li&gt;使用Redis的get和set操作Redis中的库存(Redis也支持transaction)&lt;/li&gt;
+        &lt;li&gt;秒杀活动下单执行另外一套扣除Redis库存逻辑&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/blockquote&gt;
 
-  &lt;p&gt;&lt;strong&gt;[3]: 前端层面&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;[3]: 前端层面&lt;/strong&gt;&lt;/p&gt;
+  &lt;/blockquote&gt;
 
   &lt;ul&gt;
     &lt;li&gt;用户在秒杀前访问的页面使用静态化处理，资源全部挂载在CDN&lt;/li&gt;
@@ -89,14 +106,13 @@
 
 &lt;/blockquote&gt;
 
+&lt;h3 id=&quot;section-5&quot;&gt;&lt;strong&gt;秒杀开始标志&lt;/strong&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
-  &lt;h5 id=&quot;section-5&quot;&gt;秒杀开始标志&lt;/h5&gt;
   &lt;ul&gt;
-    &lt;li&gt;服务器端统一在时间到之后，将某个开始标记打开(文件，或者数据库字段都可以)&lt;/li&gt;
+    &lt;li&gt;服务器端统一在时间到之后，将某个开始标记打开(redis字段等)&lt;/li&gt;
     &lt;li&gt;各节点不停请求服务器标记是否打开&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
-
 </description>
         <pubDate>Wed, 26 Oct 2016 00:00:00 +0800</pubDate>
         <link>http://blog.lehehe.me//php/2016/10/26/%E7%A7%92%E6%9D%80-%E6%8A%A2%E8%B4%AD%E6%B4%BB%E5%8A%A8%E8%AE%BE%E8%AE%A1.html</link>
