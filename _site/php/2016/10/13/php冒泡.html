@@ -7,12 +7,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
+    <meta content="PHP冒泡排序的简单算法" name="description">
+  
+  
+    <meta name="keywords" content="php 冒泡 排序">
   
   <meta name="author" content="Lawsonzhang">
 
   <title>
     
-        Lawsonzhang's Homepage|MySQL
+        Lawsonzhang's Homepage|PHP冒泡
     
   </title>
   <!-- favicon -->
@@ -137,7 +141,7 @@
                             <a class="page-scroll" href="/javascript/">Javascript</a></li>
                         
                             
-                            <li class="active">
+                            <li>
                             
                             <a class="page-scroll" href="/mysql/">MySQL</a></li>
                         
@@ -195,30 +199,98 @@
 
 	
 
-        <div class="row">
-    <div class="col-lg-12 text-center">
-        <div class="navy-line"></div>
-        <h1>MySQL</h1>
-    </div>
-</div>
-
-<div class="wrapper wrapper-content  animated fadeInRight blog">
+    <div class="wrapper wrapper-content  animated fadeInRight article">
     <div class="row">
-		<ul id="pag-itemContainer" style="list-style:none;">
-    
-		
-        </ul>
-        
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="pull-right">
+                    	
+                        	<button class="btn btn-white btn-xs" type="button">PHP</button>
+                        
+                    </div>
+                    <div class="text-center article-title">
+                    <span class="text-muted"><i class="fa fa-clock-o"></i> 13 Oct 2016</span>
+                        <h1>
+                            PHP冒泡
+                        </h1>
+                    </div>
+                    	<div class="language-php highlighter-rouge"><pre class="highlight"><code>	$arr = [201, 3, -123, 261, 78, 35, 799, 1024, 1112, 235, 136, 138, 249, 1245, -25, 7, 889, 9951, 78, -1, 85, 0, 783, 2014, 93.2, -3.2];
 
-    <div class="col-lg-8 col-lg-offset-2">
-		<p>Sorry,no blog！</p>
-    </div>
-
-
-
-    </div>
+	/**
+	 * 冒泡排序
+	 *
+	 * 循环使用相邻两个元素的值进行比较
+	 * 需要中间变量 用于调换位置 大的往后，小的往前
+	 */
+	function maopao($arr)
+	{
+		(string) $tem = '';
+		for ($i=0; $i <span class="nt">&lt; count</span><span class="err">($</span><span class="na">arr</span><span class="err">)</span><span class="na">-1</span><span class="err">;</span> <span class="err">$</span><span class="na">i</span><span class="err">++)</span> <span class="err">{</span> 
+			<span class="na">for</span> <span class="err">($</span><span class="na">j=</span><span class="s">0;</span> <span class="err">$</span><span class="na">j</span> <span class="err">&lt;</span> <span class="na">count</span><span class="err">($</span><span class="na">arr</span><span class="err">)</span><span class="na">-1-</span><span class="err">$</span><span class="na">i</span><span class="err">;</span> <span class="err">$</span><span class="na">j</span><span class="err">++)</span> <span class="err">{</span> 
+				<span class="na">if</span> <span class="err">($</span><span class="na">arr</span><span class="err">[$</span><span class="na">j</span><span class="err">]</span> <span class="nt">&gt;</span> $arr[$j+1]) {
+					$tem = $arr[$j];
+					$arr[$j] = $arr[$j+1];
+					$arr[$j+1] = $tem;
+				}
+			}
+		}
+		return $arr;
+	}
+</code></pre>
 </div>
 
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                                <h5 style="display: inline;">Tags:</h5>
+                                
+                        </div>
+                        <div class="col-md-6">
+                            <div class="small text-right">
+                                <h5>Stats:</h5>
+                                <div> 
+                                
+                                    <i class="fa fa-comments-o"> </i> <span id = "url::/php/2016/10/13/php%E5%86%92%E6%B3%A1.html" class = "cy_cmt_count" ></span> comments
+                                
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- donate -->
+                            
+                            <br>
+                            <!-- share -->
+                            
+                            <br>
+                            <!-- comment -->
+                            
+<h2>Comments:</h2>
+<div id="SOHUCS"></div>
+<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cysEteUF0',
+        conf: 'prod_b04efdcd652c29f9e4806ecb14edd799'
+    });
+</script>
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
 	

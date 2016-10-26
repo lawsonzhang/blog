@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+
+	
+	    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <meta content="ShopNC消息队列实现梳理" name="description">
+  
+  
+    <meta name="keywords" content="php, queue">
+  
+  <meta name="author" content="Lawsonzhang">
+
+  <title>
+    
+        Lawsonzhang's Homepage|ShopNC消息队列实现
+    
+  </title>
+  <!-- favicon -->
+  <link rel="shortcut icon" href="/static/img/favicon.ico">
+
+  <!-- Third-party CSS -->
+  <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/bower_components/animate.css/animate.min.css" rel="stylesheet">
+  <link href="/bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/static/font-mfizz/font-mfizz.css" rel="stylesheet">
+  <link href="/bower_components/toastr/toastr.min.css" rel="stylesheet">
+  <link href="/bower_components/jquery.gritter/css/jquery.gritter.css" rel="stylesheet">
+  <link rel="stylesheet" href="/search/css/cb-search.css">
+
+  <!-- Custom styles for this template -->
+  <link href="/static/css/style.min.css" rel="stylesheet">
+  <link href="/static/css/pygments.css" rel="stylesheet">
+
+  <!-- Scripts -->
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/search/js/bootstrap3-typeahead.min.js"></script>
+
+  <!-- cb-search -->
+  <script src="/search/js/cb-search.js"></script>
+  <script>
+    $(function(){
+        $("pre").css('display','block');
+    });
+  </script>
+  <!-- Mainly scripts -->
+  <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+  <script src="/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+
+  <!-- Peity -->
+  <script src="/bower_components/peity/jquery.peity.min.js"></script>
+
+  <script src="/bower_components/PACE/pace.min.js"></script>
+  <script src="/bower_components/wow/dist/wow.min.js"></script>
+  <!-- Custom and plugin javascript -->
+  <script src="/static/js/inspinia.js"></script>
+
+  <!-- Rickshaw -->
+  <script src="/bower_components/rickshaw/vendor/d3.v3.js"></script>
+  <script src="/bower_components/rickshaw/rickshaw.min.js"></script>
+
+
+  <!-- jPages -->
+  <script src="/static/js/jPages.js"></script>
+  <script src="/static/js/js.js"></script>
+  <script id="dsq-count-scr" src="//jalpc.disqus.com/count.js" async></script>
+  <script type="text/javascript">
+        $(function(){
+          /* initiate the plugin */
+          $("div.pag-holder").jPages({
+              containerID  : "pag-itemContainer",
+              perPage      : 5,  /* num of items per page */
+              startPage    : 1,
+              startRange   : 1,
+              midRange     : 3,
+              endRange     : 1
+          });
+      });
+  </script>
+</head>
+
+	
+
+
+<body id="page-top" class="landing-page">
+
+	
+	    <div class="search-tool" style="position: fixed; top: 0px ; bottom: 0px; left: 0px; right:  0px;
+      opacity: 0.95; background-color: #111111; z-index: 9999; display: none;">
+    <input type="text" class="form-control search-content" id="search-content" style="position: fixed; top: 60px"
+           placeholder="Search Blog"
+           >
+
+    <div style="position: fixed; top: 16px; right: 16px; z-index: 9999;">
+        <img src="/search/img/cb-close.png"  id="close-btn"/>
+    </div>
+</div>
+
+<div style="position: fixed; right: 16px; bottom: 20px; z-index: 9999;">
+    <img src="/search/img/cb-search.png"  id="search-btn"  title="Double click Ctrl"/>
+</div>
+
+<div class="navbar-wrapper">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Lawsonzhang's Homepage</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="page-scroll" href="/blog/"></a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/blog/">Blog</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/php/">PHP</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/linux/">Linux</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/javascript/">Javascript</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/mysql/">MySQL</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/nosql/">NoSQL</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/life/">Life</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+</div>
+<div id="inSlider" class="carousel carousel-fade" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#inSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#inSlider" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <div class="container">
+                <div class="carousel-caption">
+                </div>
+                <div class="carousel-image wow zoomIn">
+                    <!-- <img src="static/img/landing/laptop.png" alt="laptop"/> -->
+                </div>
+            </div>
+            <!-- Set background for slide in css -->
+            <div class="header-back one"></div>
+
+        </div>
+        <div class="item">
+            <div class="container">
+                <div class="carousel-caption blank">
+                </div>
+            </div>
+            <!-- Set background for slide in css -->
+            <div class="header-back two"></div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#inSlider" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#inSlider" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+	
+
+    <div class="wrapper wrapper-content  animated fadeInRight article">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="pull-right">
+                    	
+                        	<button class="btn btn-white btn-xs" type="button">PHP</button>
+                        
+                    </div>
+                    <div class="text-center article-title">
+                    <span class="text-muted"><i class="fa fa-clock-o"></i> 24 Oct 2016</span>
+                        <h1>
+                            ShopNC消息队列实现
+                        </h1>
+                    </div>
+                    	<h2 id="shopncredislist">ShopNC的消息队列使用的是Redis的list实现。</h2>
+
+<h3 id="section">以下单成功给商家消息推送为例，下单成功后执行：</h3>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+    <span class="c1">// 发送商家提醒
+</span>    <span class="nv">$param</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+    <span class="nv">$param</span><span class="p">[</span><span class="s1">'code'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'new_order'</span><span class="p">;</span>
+    <span class="nv">$param</span><span class="p">[</span><span class="s1">'store_id'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$orderInfo</span><span class="p">[</span><span class="s1">'store_id'</span><span class="p">];</span>
+    <span class="nv">$param</span><span class="p">[</span><span class="s1">'param'</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'order_sn'</span> <span class="o">=&gt;</span> <span class="nv">$orderInfo</span><span class="p">[</span><span class="s1">'order_sn'</span><span class="p">]</span>
+    <span class="p">);</span>
+    <span class="nx">QueueClient</span><span class="o">::</span><span class="na">push</span><span class="p">(</span><span class="s1">'sendStoreMsg'</span><span class="p">,</span> <span class="nv">$param</span><span class="p">);</span>
+<span class="cp">?&gt;</span>    
+</code></pre>
+</div>
+
+<h3 id="queueclient-sendstoremsgkey">QueueClient代码如下 主要执行入列逻辑，’sendStoreMsg’是所有推送店铺消息共用key，如果消息队列未开启，就直接去执行发送信息逻辑方法</h3>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">QueueClient</span> <span class="p">{</span>
+
+    <span class="k">private</span> <span class="k">static</span> <span class="nv">$queuedb</span><span class="p">;</span>
+
+    <span class="sd">/**
+     * 入列
+     * @param string $key
+     * @param array $value
+     */</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">push</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">C</span><span class="p">(</span><span class="s1">'queue.open'</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">Logic</span><span class="p">(</span><span class="s1">'queue'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nv">$key</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span><span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">is_object</span><span class="p">(</span><span class="nx">self</span><span class="o">::</span><span class="nv">$queuedb</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="o">::</span><span class="nv">$queuedb</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QueueDB</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$queuedb</span><span class="o">-&gt;</span><span class="na">push</span><span class="p">(</span><span class="nb">serialize</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="nv">$key</span><span class="o">=&gt;</span><span class="nv">$value</span><span class="p">)));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="cron-crontabindexphpactqueuecrontabqueuephpindexop-">再说出列： cron脚本定时执行 /crontab/index.php?act=queue，这会执行crontab文件夹下的queue.php里的indexOp方法， 这个方法里的代码主要执行消息队列的出列操作</h3>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$logicQueue</span> <span class="o">=</span> <span class="nx">Logic</span><span class="p">(</span><span class="s1">'queue'</span><span class="p">);</span><span class="c1">// 实例化/data/logic/queue.php中的 queueLogic类
+</span>    <span class="nv">$worker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QueueServer</span><span class="p">();</span><span class="c1">// 实例化 /core/framework/libraries/queue.php中的QueueServer类
+</span>    <span class="nv">$queues</span> <span class="o">=</span> <span class="nv">$worker</span><span class="o">-&gt;</span><span class="na">scan</span><span class="p">();</span><span class="c1">// 扫描list中所有内容
+</span>    <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$content</span> <span class="o">=</span> <span class="nv">$worker</span><span class="o">-&gt;</span><span class="na">pop</span><span class="p">(</span><span class="nv">$queues</span><span class="p">,</span><span class="mi">1800</span><span class="p">);</span><span class="c1">// 取出队列中所有内容
+</span>        <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$content</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$method</span> <span class="o">=</span> <span class="nb">key</span><span class="p">(</span><span class="nv">$content</span><span class="p">);</span><span class="c1">// 取出列中的键值 当时以方法名存储
+</span>            <span class="nv">$arg</span> <span class="o">=</span> <span class="nb">current</span><span class="p">(</span><span class="nv">$content</span><span class="p">);</span><span class="c1">// 取出内容 反序列化
+</span>            <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$logicQueue</span><span class="o">-&gt;</span><span class="nv">$method</span><span class="p">(</span><span class="nv">$arg</span><span class="p">);</span><span class="c1">// 执行queueLogic中的选定方法
+</span>            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$result</span><span class="p">[</span><span class="s1">'state'</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">log</span><span class="p">(</span><span class="nv">$result</span><span class="p">[</span><span class="s1">'msg'</span><span class="p">],</span><span class="kc">false</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nv">$model</span> <span class="o">=</span> <span class="nx">Model</span><span class="p">();</span>
+            <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">checkActive</span><span class="p">();</span>
+            <span class="nb">unset</span><span class="p">(</span><span class="nv">$model</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="cp">?&gt;</span>    
+</code></pre>
+</div>
+
+<h3 id="queueserverqueuedb">QueueServer类主要去调用QueueDB中的方法</h3>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">QueueServer</span> <span class="p">{</span>
+
+    <span class="k">private</span> <span class="nv">$_queuedb</span><span class="p">;</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_queuedb</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QueueDB</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * 取出队列
+     * @param unknown $key
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">pop</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span><span class="nv">$time</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">unserialize</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_queuedb</span><span class="o">-&gt;</span><span class="na">pop</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span><span class="nv">$time</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">scan</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_queuedb</span><span class="o">-&gt;</span><span class="na">scan</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="queuedb-lpush-brpop">QueueDB代码如下 lpush入列 brpop出列</h3>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">QueueDB</span> <span class="p">{</span>
+
+    <span class="c1">//定义对象
+</span>    <span class="k">private</span> <span class="nv">$_redis</span><span class="p">;</span>
+
+    <span class="c1">//存储前缀
+</span>    <span class="k">private</span> <span class="nv">$_tb_prefix</span> <span class="o">=</span> <span class="s1">'QUEUE_TABLE_'</span><span class="p">;</span>
+
+    <span class="c1">//存定义存储表的数量,系统会随机分配存储
+</span>    <span class="k">private</span> <span class="nv">$_tb_num</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="c1">//临时存储表
+</span>    <span class="k">private</span> <span class="nv">$_tb_tmp</span> <span class="o">=</span> <span class="s1">'TMP_TABLE'</span><span class="p">;</span>
+
+    <span class="sd">/**
+     * 初始化
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nb">extension_loaded</span><span class="p">(</span><span class="s1">'redis'</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">throw_exception</span><span class="p">(</span><span class="s1">'redis failed to load'</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_redis</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Redis</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_redis</span><span class="o">-&gt;</span><span class="na">connect</span><span class="p">(</span><span class="nx">C</span><span class="p">(</span><span class="s1">'queue.host'</span><span class="p">),</span><span class="nx">C</span><span class="p">(</span><span class="s1">'queue.port'</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * 入列
+     * @param unknown $value
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">push</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_redis</span><span class="o">-&gt;</span><span class="na">lPush</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_tb_prefix</span><span class="o">.</span><span class="nb">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_tb_num</span><span class="p">),</span><span class="nv">$value</span><span class="p">);</span>
+        <span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+             <span class="nx">throw_exception</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="sd">/**
+     * 取得所有的list key(表)
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">scan</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nv">$list_key</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+        <span class="k">for</span><span class="p">(</span><span class="nv">$i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="nv">$i</span><span class="o">&lt;=</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_tb_num</span><span class="p">;</span><span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$list_key</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_tb_prefix</span><span class="o">.</span><span class="nv">$i</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nv">$list_key</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="sd">/**
+     * 出列
+     * @param unknown $key
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">pop</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$time</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_redis</span><span class="o">-&gt;</span><span class="na">brPop</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span><span class="nv">$time</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nv">$result</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">exit</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="sd">/**
+     * 清空,暂时无用
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">clear</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_redis</span><span class="o">-&gt;</span><span class="na">flushAll</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="key">在执行消息中key执行方法</h3>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="sd">/**
+ * 发送店铺消息
+ */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">sendStoreMsg</span><span class="p">(</span><span class="nv">$param</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$send</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sendStoreMsg</span><span class="p">();</span>
+    <span class="nv">$send</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">'code'</span><span class="p">,</span> <span class="nv">$param</span><span class="p">[</span><span class="s1">'code'</span><span class="p">]);</span>
+    <span class="nv">$send</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">'store_id'</span><span class="p">,</span> <span class="nv">$param</span><span class="p">[</span><span class="s1">'store_id'</span><span class="p">]);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$param</span><span class="p">[</span><span class="s1">'code'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'new_order'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$send</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">'pandaeeWorkerMobile'</span><span class="p">,</span>
+           	<span class="k">array</span><span class="p">(</span>
+               <span class="s1">'13003297107'</span><span class="p">,</span> <span class="c1">//李晨艳
+</span>               <span class="s1">'15370777530'</span><span class="p">,</span> <span class="c1">//杨蓓
+</span>               <span class="s1">'15121192885'</span><span class="p">,</span> <span class="c1">//张敏
+</span>               <span class="s1">'15618297863'</span><span class="p">,</span> <span class="c1">//阿飞
+</span>           	<span class="p">)</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nv">$send</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$param</span><span class="p">[</span><span class="s1">'param'</span><span class="p">]);</span>
+    <span class="c1">// 新订单产生推送至商家
+</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$param</span><span class="p">[</span><span class="s1">'code'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'new_order'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$send</span><span class="o">-&gt;</span><span class="na">pushToApp</span><span class="p">(</span><span class="nv">$param</span><span class="p">[</span><span class="s1">'store_id'</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">callback</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="o">&lt;?</span><span class="nx">php</span>
+</code></pre>
+</div>
+
+<h3 id="sendstoremsg">会实例化一个sendStoreMsg类</h3>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="sd">/**
+ * 商家有新订单的推送
+ */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">pushToApp</span><span class="p">(</span><span class="nv">$storeId</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$storeInfo</span> <span class="o">=</span> <span class="nx">Model</span><span class="p">(</span><span class="s1">'store'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getStoreInfoByID</span><span class="p">(</span><span class="nv">$storeId</span><span class="p">);</span>
+    <span class="nv">$sellerMemberId</span> <span class="o">=</span> <span class="nv">$storeInfo</span><span class="p">[</span><span class="s1">'member_id'</span><span class="p">];</span>
+    <span class="nx">Push</span><span class="o">::</span><span class="na">pushOrderToSeller</span><span class="p">(</span><span class="nv">$sellerMemberId</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                                <h5 style="display: inline;">Tags:</h5>
+                                
+                                    <button class="btn btn-white btn-xs" type="button">php</button>
+                                
+                        </div>
+                        <div class="col-md-6">
+                            <div class="small text-right">
+                                <h5>Stats:</h5>
+                                <div> 
+                                
+                                    <i class="fa fa-comments-o"> </i> <span id = "url::/php/2016/10/24/ShopNC%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0.html" class = "cy_cmt_count" ></span> comments
+                                
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- donate -->
+                            
+                            <br>
+                            <!-- share -->
+                            
+                            <br>
+                            <!-- comment -->
+                            
+<h2>Comments:</h2>
+<div id="SOHUCS"></div>
+<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cysEteUF0',
+        conf: 'prod_b04efdcd652c29f9e4806ecb14edd799'
+    });
+</script>
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+	
+	    <script src="/static/js/scroll.js"></script>
+
+<!-- Baidu analytics -->
+
+
+<!-- Google analytics -->
+
+
+
+
+
+  <script id="cy_cmt_num" src="http://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cysfY7ULn"></script>
+
+
+<script async src="/static/js/count_page.js"></script>
+
+	
+
+</body>
+</html>
