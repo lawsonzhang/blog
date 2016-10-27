@@ -7,16 +7,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-    <meta content="PHP冒泡排序的简单算法" name="description">
+    <meta content="PHP中常用的魔术方法和魔术常量" name="description">
   
   
-    <meta name="keywords" content="php 冒泡 排序">
+    <meta name="keywords" content="魔术方法， PHP，魔术常量">
   
   <meta name="author" content="Lawsonzhang">
 
   <title>
     
-        Lawsonzhang's Homepage|PHP冒泡
+        Lawsonzhang's Homepage|PHP常用魔术方法和魔术常量
     
   </title>
   <!-- favicon -->
@@ -210,40 +210,93 @@
                         
                     </div>
                     <div class="text-center article-title">
-                    <span class="text-muted"><i class="fa fa-clock-o"></i> 13 Oct 2016</span>
+                    <span class="text-muted"><i class="fa fa-clock-o"></i> 26 Sep 2016</span>
                         <h1>
-                            PHP冒泡
+                            PHP常用魔术方法和魔术常量
                         </h1>
                     </div>
-                    	<div class="language-php highlighter-rouge"><pre class="highlight"><code>	$arr = [201, 3, -123, 261, 78, 35, 799, 1024, 1112, 235, 136, 138, 249, 1245, -25, 7, 889, 9951, 78, -1, 85, 0, 783, 2014, 93.2, -3.2];
+                    	<h2 id="magic-methods"><strong>魔术方法(Magic methods)</strong></h2>
 
-	/**
-	 * 冒泡排序
-	 *
-	 * 循环使用相邻两个元素的值进行比较
-	 * 需要中间变量 用于调换位置 大的往后，小的往前
-	 */
-	function maopao($arr)
-	{
-		(string) $tem = '';
-		for ($i=0; $i <span class="nt">&lt; count</span><span class="err">($</span><span class="na">arr</span><span class="err">)</span><span class="na">-1</span><span class="err">;</span> <span class="err">$</span><span class="na">i</span><span class="err">++)</span> <span class="err">{</span> 
-			<span class="na">for</span> <span class="err">($</span><span class="na">j=</span><span class="s">0;</span> <span class="err">$</span><span class="na">j</span> <span class="err">&lt;</span> <span class="na">count</span><span class="err">($</span><span class="na">arr</span><span class="err">)</span><span class="na">-1-</span><span class="err">$</span><span class="na">i</span><span class="err">;</span> <span class="err">$</span><span class="na">j</span><span class="err">++)</span> <span class="err">{</span> 
-				<span class="na">if</span> <span class="err">($</span><span class="na">arr</span><span class="err">[$</span><span class="na">j</span><span class="err">]</span> <span class="nt">&gt;</span> $arr[$j+1]) {
-					$tem = $arr[$j];
-					$arr[$j] = $arr[$j+1];
-					$arr[$j+1] = $tem;
-				}
-			}
-		}
-		return $arr;
-	}
-</code></pre>
-</div>
+<ul>
+  <li>
+    <p><strong><code class="highlighter-rouge">__construct()</code></strong>，类的构造函数</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__destruct()</code></strong>，类的析构函数</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__call()</code></strong>，在对象中调用一个不可访问方法时调用</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__callStatic()</code></strong>，用静态方式中调用一个不可访问方法时调用</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__get()</code></strong>，获得一个类的成员变量时调用</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__set()</code></strong>，设置一个类的成员变量时调用</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__isset()</code></strong>，当对不可访问属性调用isset()或empty()时调用</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__unset()</code></strong>，当对不可访问属性调用unset()时被调用</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__sleep()</code></strong>，执行serialize()时，先会调用这个函数</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__wakeup()</code></strong>，执行unserialize()时，先会调用这个函数</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__toString()</code></strong>，类被当成字符串时的回应方法</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__invoke()</code></strong>，调用函数的方式调用一个对象时的回应方法</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__set_state()</code></strong>，调用var_export()导出类时，此静态方法会被调用</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__clone()</code></strong>，当对象复制完成时调用</p>
+  </li>
+</ul>
+
+<h2 id="magic-constants"><strong>魔术常量(Magic constants)</strong></h2>
+
+<ul>
+  <li>
+    <p><strong><code class="highlighter-rouge">__LINE__</code></strong>，文件中的当前行号</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__FILE__</code></strong>，文件的完整路径和文件名</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__DIR__</code></strong>，文件所在的目录</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__FUNCTION__</code></strong>，函数名称</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__CLASS__</code></strong>，类的名称</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__TRAIT__</code></strong>，Trait的名字</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__METHOD__</code></strong>，类的方法名</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__NAMESPACE__</code></strong>，当前命名空间的名称</p>
+  </li>
+</ul>
 
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
                                 <h5 style="display: inline;">Tags:</h5>
+                                
+                                    <button class="btn btn-white btn-xs" type="button">php</button>
                                 
                         </div>
                         <div class="col-md-6">
@@ -251,7 +304,7 @@
                                 <h5>Stats:</h5>
                                 <div> 
                                 
-                                    <i class="fa fa-comments-o"> </i> <span id = "url::/php/2016/10/13/php%E5%86%92%E6%B3%A1.html" class = "cy_cmt_count" ></span> comments
+                                    <i class="fa fa-comments-o"> </i> <span id = "url::/php/2016/09/26/%E5%B8%B8%E7%94%A8%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95.html" class = "cy_cmt_count" ></span> comments
                                 
                                 
                                 </div>
