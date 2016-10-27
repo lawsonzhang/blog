@@ -5,8 +5,8 @@
     <description>Lawson's blog,first step, second step...</description>
     <link>http://blog.lehehe.me//</link>
     <atom:link href="http://blog.lehehe.me//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 26 Oct 2016 11:55:23 +0800</pubDate>
-    <lastBuildDate>Wed, 26 Oct 2016 11:55:23 +0800</lastBuildDate>
+    <pubDate>Thu, 27 Oct 2016 15:36:34 +0800</pubDate>
+    <lastBuildDate>Thu, 27 Oct 2016 15:36:34 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -30,6 +30,7 @@
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;section-2&quot;&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/h2&gt;
+
 &lt;h3 id=&quot;section-3&quot;&gt;&lt;strong&gt;服务器分制思想&lt;/strong&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
   &lt;ul&gt;
@@ -47,35 +48,39 @@
   &lt;p&gt;&lt;strong&gt;[1]: MySQL数据库(基于事务(transcation)的原子性)&lt;/strong&gt;&lt;/p&gt;
 
   &lt;ul&gt;
-    &lt;li&gt;悲观锁
-      &lt;blockquote&gt;
-
-        &lt;ol&gt;
-          &lt;li&gt;
-            &lt;p&gt;利用MySQL innodb引擎的写独占锁&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;&lt;strong&gt;SELECT&lt;/strong&gt; * FROM table_name &lt;strong&gt;FOR UPDATE&lt;/strong&gt;;    UPDATE table_name SET field_name = field_value - 1;&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ol&gt;
-      &lt;/blockquote&gt;
-    &lt;/li&gt;
-    &lt;li&gt;乐观锁
-      &lt;blockquote&gt;
-
-        &lt;ol&gt;
-          &lt;li&gt;
-            &lt;p&gt;乐观的认为我每一次更新库存都不会因为并发而产生多扣库存，当一旦发现多扣产生，就执行数据回滚&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;先执行UPDATE库存操作，发现库存小于0就执行回滚(&lt;strong&gt;rollback&lt;/strong&gt;)&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ol&gt;
-      &lt;/blockquote&gt;
-    &lt;/li&gt;
+    &lt;li&gt;悲观锁&lt;/li&gt;
   &lt;/ul&gt;
 
+  &lt;blockquote&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;利用MySQL innodb引擎的写独占锁&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;SELECT&lt;/strong&gt; * FROM table_name &lt;strong&gt;FOR UPDATE&lt;/strong&gt;;    UPDATE table_name SET field_name = field_value - 1;&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;乐观锁&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;blockquote&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;乐观的认为我每一次更新库存都不会因为并发而产生多扣库存，当一旦发现多扣产生，就执行数据回滚&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;先执行UPDATE库存操作，发现库存小于0就执行回滚(&lt;strong&gt;rollback&lt;/strong&gt;)&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/blockquote&gt;
+
   &lt;p&gt;&lt;strong&gt;[2]: NOSQL(Redis)&lt;/strong&gt;&lt;/p&gt;
+
   &lt;blockquote&gt;
 
     &lt;p&gt;Redis支持list类型存储，使用push、pop入列和出列，抢购库存大可分多条队列并行&lt;/p&gt;
@@ -96,8 +101,9 @@
       &lt;/ul&gt;
     &lt;/blockquote&gt;
 
-    &lt;p&gt;&lt;strong&gt;[3]: 前端层面&lt;/strong&gt;&lt;/p&gt;
   &lt;/blockquote&gt;
+
+  &lt;p&gt;&lt;strong&gt;[3]: 前端层面&lt;/strong&gt;&lt;/p&gt;
 
   &lt;ul&gt;
     &lt;li&gt;用户在秒杀前访问的页面使用静态化处理，资源全部挂载在CDN&lt;/li&gt;
@@ -440,6 +446,95 @@
         <pubDate>Tue, 27 Sep 2016 00:00:00 +0800</pubDate>
         <link>http://blog.lehehe.me//php/2016/09/27/php-skilltree.html</link>
         <guid isPermaLink="true">http://blog.lehehe.me//php/2016/09/27/php-skilltree.html</guid>
+        
+        <category>php</category>
+        
+        
+        <category>PHP</category>
+        
+      </item>
+    
+      <item>
+        <title>PHP常用魔术方法和魔术常量</title>
+        <description>&lt;h2 id=&quot;magic-methods&quot;&gt;&lt;strong&gt;魔术方法(Magic methods)&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__construct()&lt;/code&gt;&lt;/strong&gt;，类的构造函数&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__destruct()&lt;/code&gt;&lt;/strong&gt;，类的析构函数&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__call()&lt;/code&gt;&lt;/strong&gt;，在对象中调用一个不可访问方法时调用&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__callStatic()&lt;/code&gt;&lt;/strong&gt;，用静态方式中调用一个不可访问方法时调用&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__get()&lt;/code&gt;&lt;/strong&gt;，获得一个类的成员变量时调用&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__set()&lt;/code&gt;&lt;/strong&gt;，设置一个类的成员变量时调用&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__isset()&lt;/code&gt;&lt;/strong&gt;，当对不可访问属性调用isset()或empty()时调用&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__unset()&lt;/code&gt;&lt;/strong&gt;，当对不可访问属性调用unset()时被调用&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__sleep()&lt;/code&gt;&lt;/strong&gt;，执行serialize()时，先会调用这个函数&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__wakeup()&lt;/code&gt;&lt;/strong&gt;，执行unserialize()时，先会调用这个函数&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__toString()&lt;/code&gt;&lt;/strong&gt;，类被当成字符串时的回应方法&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__invoke()&lt;/code&gt;&lt;/strong&gt;，调用函数的方式调用一个对象时的回应方法&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__set_state()&lt;/code&gt;&lt;/strong&gt;，调用var_export()导出类时，此静态方法会被调用&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__clone()&lt;/code&gt;&lt;/strong&gt;，当对象复制完成时调用&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;magic-constants&quot;&gt;&lt;strong&gt;魔术常量(Magic constants)&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__LINE__&lt;/code&gt;&lt;/strong&gt;，文件中的当前行号&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__FILE__&lt;/code&gt;&lt;/strong&gt;，文件的完整路径和文件名&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__DIR__&lt;/code&gt;&lt;/strong&gt;，文件所在的目录&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__FUNCTION__&lt;/code&gt;&lt;/strong&gt;，函数名称&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__CLASS__&lt;/code&gt;&lt;/strong&gt;，类的名称&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__TRAIT__&lt;/code&gt;&lt;/strong&gt;，Trait的名字&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__METHOD__&lt;/code&gt;&lt;/strong&gt;，类的方法名&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__NAMESPACE__&lt;/code&gt;&lt;/strong&gt;，当前命名空间的名称&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Mon, 26 Sep 2016 00:00:00 +0800</pubDate>
+        <link>http://blog.lehehe.me//php/2016/09/26/%E5%B8%B8%E7%94%A8%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95.html</link>
+        <guid isPermaLink="true">http://blog.lehehe.me//php/2016/09/26/%E5%B8%B8%E7%94%A8%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95.html</guid>
         
         <category>php</category>
         
