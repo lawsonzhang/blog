@@ -1,0 +1,75 @@
+<h2 id="magic-methods"><strong>魔术方法(Magic methods)</strong></h2>
+
+<ul>
+  <li>
+    <p><strong><code class="highlighter-rouge">__construct()</code></strong>，类的构造函数</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__destruct()</code></strong>，类的析构函数</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__call()</code></strong>，在对象中调用一个不可访问方法时调用</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__callStatic()</code></strong>，用静态方式中调用一个不可访问方法时调用</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__get()</code></strong>，获得一个类的成员变量时调用</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__set()</code></strong>，设置一个类的成员变量时调用</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__isset()</code></strong>，当对不可访问属性调用isset()或empty()时调用</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__unset()</code></strong>，当对不可访问属性调用unset()时被调用</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__sleep()</code></strong>，执行serialize()时，先会调用这个函数</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__wakeup()</code></strong>，执行unserialize()时，先会调用这个函数</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__toString()</code></strong>，类被当成字符串时的回应方法</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__invoke()</code></strong>，调用函数的方式调用一个对象时的回应方法</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__set_state()</code></strong>，调用var_export()导出类时，此静态方法会被调用</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__clone()</code></strong>，当对象复制完成时调用</p>
+  </li>
+</ul>
+
+<h2 id="magic-constants"><strong>魔术常量(Magic constants)</strong></h2>
+
+<ul>
+  <li>
+    <p><strong><code class="highlighter-rouge">__LINE__</code></strong>，文件中的当前行号</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__FILE__</code></strong>，文件的完整路径和文件名</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__DIR__</code></strong>，文件所在的目录</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__FUNCTION__</code></strong>，函数名称</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__CLASS__</code></strong>，类的名称</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__TRAIT__</code></strong>，Trait的名字</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__METHOD__</code></strong>，类的方法名</p>
+  </li>
+  <li>
+    <p><strong><code class="highlighter-rouge">__NAMESPACE__</code></strong>，当前命名空间的名称</p>
+  </li>
+</ul>

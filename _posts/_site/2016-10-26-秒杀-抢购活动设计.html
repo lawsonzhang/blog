@@ -1,0 +1,108 @@
+<h2 id="section"><strong>秒杀阶段分析</strong></h2>
+<blockquote>
+  <ul>
+    <li>秒杀前：用户访问宝贝描述页，不断刷新，等待秒杀开始</li>
+    <li>秒杀中：用户点击秒杀按钮，洪水般的流量瞬间涌入系统，都想走在最前面，抢到宝贝</li>
+    <li>秒杀后：秒杀结束，商品已被抢完或者秒杀时间已过，用户访问秒杀结束页面，整个秒杀阶段结束</li>
+  </ul>
+</blockquote>
+
+<h2 id="section-1"><strong>难度挑战</strong></h2>
+<blockquote>
+  <ul>
+    <li>秒杀前：大量用户频发刷新秒杀页面，都想第一个看到秒杀开始，越临近开始时间。刷新越频繁，这时候系统会承受巨大的读压力</li>
+    <li>秒杀中：用户的秒杀请求短时间内持续涌入，前端访问量暴增，并且会牵扯到写库的需求，还有在对于单一热点商品库存判断和递减，由于写库是排他操作，一个一个排队处理，数据库写压力很大。</li>
+    <li>秒杀后：和秒杀前类似，短时间内单页很多用户访问，但时间一过，页面就没有访问量了</li>
+  </ul>
+</blockquote>
+
+<h2 id="section-2"><strong>解决方案</strong></h2>
+
+<h3 id="section-3"><strong>服务器分制思想</strong></h3>
+<blockquote>
+  <ul>
+    <li>LVS、<a href="http://blog.lehehe.me/blog/">Nginx反向代理</a>等增强服务器的抗压能力</li>
+    <li>增加服务器的带宽</li>
+    <li>数据库读写分离、<a href="http://blog.lehehe.me/blog/">主从复制</a>增强数据库的读写能力</li>
+    <li>适当增加数据库最大连接数</li>
+  </ul>
+</blockquote>
+
+<h3 id="section-4"><strong>库存管理</strong></h3>
+<blockquote>
+  <p>抢购秒杀最容易出现的库存管理问题，例如超卖等</p>
+
+  <p><strong>[1]: MySQL数据库(基于事务(transcation)的原子性)</strong></p>
+
+  <ul>
+    <li>悲观锁</li>
+  </ul>
+
+  <blockquote>
+
+    <ol>
+      <li>
+        <p>利用MySQL innodb引擎的写独占锁</p>
+      </li>
+      <li>
+        <p><strong>SELECT</strong> * FROM table_name <strong>FOR UPDATE</strong>;    UPDATE table_name SET field_name = field_value - 1;</p>
+      </li>
+    </ol>
+  </blockquote>
+
+  <ul>
+    <li>乐观锁</li>
+  </ul>
+
+  <blockquote>
+
+    <ol>
+      <li>
+        <p>乐观的认为我每一次更新库存都不会因为并发而产生多扣库存，当一旦发现多扣产生，就执行数据回滚</p>
+      </li>
+      <li>
+        <p>先执行UPDATE库存操作，发现库存小于0就执行回滚(<strong>rollback</strong>)</p>
+      </li>
+    </ol>
+  </blockquote>
+
+  <p><strong>[2]: NOSQL(Redis)</strong></p>
+
+  <blockquote>
+
+    <p>Redis支持list类型存储，使用push、pop入列和出列，抢购库存大可分多条队列并行</p>
+
+    <p>进入队列后的用户可以排队下单，进入等待秒杀页面，未进入队列直接跳转活动结束页面</p>
+
+    <p>用PHP书写守护进程，while无限循环pop队列数据，执行下单操作</p>
+
+    <p>也可以用其他MQ实现消息队列功能</p>
+
+    <p>这里还有一种以Redis为主，舍弃关系型数据库参与秒杀的方式</p>
+
+    <blockquote>
+      <ul>
+        <li>活动开始前先将秒杀的参与库存从总库存中去除，并加入Redis库存之中</li>
+        <li>使用Redis的get和set操作Redis中的库存(Redis也支持transaction)</li>
+        <li>秒杀活动下单执行另外一套扣除Redis库存逻辑</li>
+      </ul>
+    </blockquote>
+
+  </blockquote>
+
+  <p><strong>[3]: 前端层面</strong></p>
+
+  <ul>
+    <li>用户在秒杀前访问的页面使用静态化处理，资源全部挂载在CDN</li>
+    <li>使用动态加载JS方式判断秒杀开始: 去CDN请求一个JS，该JS用于秒杀开始后跳转秒杀页面使用，必须在秒杀开始之后生成，同理：秒杀页面也应该在活动开始之后生成</li>
+  </ul>
+
+</blockquote>
+
+<h3 id="section-5"><strong>秒杀开始标志</strong></h3>
+<blockquote>
+  <ul>
+    <li>服务器端统一在时间到之后，将某个开始标记打开(redis字段等)</li>
+    <li>各节点不停请求服务器标记是否打开</li>
+  </ul>
+</blockquote>

@@ -1,0 +1,209 @@
+<h2 id="shopncredislist">ShopNC的消息队列使用的是Redis的list实现。</h2>
+
+<h3 id="section">以下单成功给商家消息推送为例，下单成功后执行：</h3>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+    <span class="c1">// 发送商家提醒
+</span>    <span class="nv">$param</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+    <span class="nv">$param</span><span class="p">[</span><span class="s1">'code'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'new_order'</span><span class="p">;</span>
+    <span class="nv">$param</span><span class="p">[</span><span class="s1">'store_id'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$orderInfo</span><span class="p">[</span><span class="s1">'store_id'</span><span class="p">];</span>
+    <span class="nv">$param</span><span class="p">[</span><span class="s1">'param'</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'order_sn'</span> <span class="o">=&gt;</span> <span class="nv">$orderInfo</span><span class="p">[</span><span class="s1">'order_sn'</span><span class="p">]</span>
+    <span class="p">);</span>
+    <span class="nx">QueueClient</span><span class="o">::</span><span class="na">push</span><span class="p">(</span><span class="s1">'sendStoreMsg'</span><span class="p">,</span> <span class="nv">$param</span><span class="p">);</span>
+<span class="cp">?&gt;</span>    
+</code></pre>
+</div>
+
+<h3 id="queueclient-sendstoremsgkey">QueueClient代码如下 主要执行入列逻辑，’sendStoreMsg’是所有推送店铺消息共用key，如果消息队列未开启，就直接去执行发送信息逻辑方法</h3>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">QueueClient</span> <span class="p">{</span>
+
+    <span class="k">private</span> <span class="k">static</span> <span class="nv">$queuedb</span><span class="p">;</span>
+
+    <span class="sd">/**
+     * 入列
+     * @param string $key
+     * @param array $value
+     */</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">push</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">C</span><span class="p">(</span><span class="s1">'queue.open'</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">Logic</span><span class="p">(</span><span class="s1">'queue'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nv">$key</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span><span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">is_object</span><span class="p">(</span><span class="nx">self</span><span class="o">::</span><span class="nv">$queuedb</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="o">::</span><span class="nv">$queuedb</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QueueDB</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$queuedb</span><span class="o">-&gt;</span><span class="na">push</span><span class="p">(</span><span class="nb">serialize</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="nv">$key</span><span class="o">=&gt;</span><span class="nv">$value</span><span class="p">)));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="cron-crontabindexphpactqueuecrontabqueuephpindexop-">再说出列： cron脚本定时执行 /crontab/index.php?act=queue，这会执行crontab文件夹下的queue.php里的indexOp方法， 这个方法里的代码主要执行消息队列的出列操作</h3>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$logicQueue</span> <span class="o">=</span> <span class="nx">Logic</span><span class="p">(</span><span class="s1">'queue'</span><span class="p">);</span><span class="c1">// 实例化/data/logic/queue.php中的 queueLogic类
+</span>    <span class="nv">$worker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QueueServer</span><span class="p">();</span><span class="c1">// 实例化 /core/framework/libraries/queue.php中的QueueServer类
+</span>    <span class="nv">$queues</span> <span class="o">=</span> <span class="nv">$worker</span><span class="o">-&gt;</span><span class="na">scan</span><span class="p">();</span><span class="c1">// 扫描list中所有内容
+</span>    <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$content</span> <span class="o">=</span> <span class="nv">$worker</span><span class="o">-&gt;</span><span class="na">pop</span><span class="p">(</span><span class="nv">$queues</span><span class="p">,</span><span class="mi">1800</span><span class="p">);</span><span class="c1">// 取出队列中所有内容
+</span>        <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$content</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$method</span> <span class="o">=</span> <span class="nb">key</span><span class="p">(</span><span class="nv">$content</span><span class="p">);</span><span class="c1">// 取出列中的键值 当时以方法名存储
+</span>            <span class="nv">$arg</span> <span class="o">=</span> <span class="nb">current</span><span class="p">(</span><span class="nv">$content</span><span class="p">);</span><span class="c1">// 取出内容 反序列化
+</span>            <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$logicQueue</span><span class="o">-&gt;</span><span class="nv">$method</span><span class="p">(</span><span class="nv">$arg</span><span class="p">);</span><span class="c1">// 执行queueLogic中的选定方法
+</span>            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$result</span><span class="p">[</span><span class="s1">'state'</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">log</span><span class="p">(</span><span class="nv">$result</span><span class="p">[</span><span class="s1">'msg'</span><span class="p">],</span><span class="kc">false</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nv">$model</span> <span class="o">=</span> <span class="nx">Model</span><span class="p">();</span>
+            <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">checkActive</span><span class="p">();</span>
+            <span class="nb">unset</span><span class="p">(</span><span class="nv">$model</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="cp">?&gt;</span>    
+</code></pre>
+</div>
+
+<h3 id="queueserverqueuedb">QueueServer类主要去调用QueueDB中的方法</h3>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">QueueServer</span> <span class="p">{</span>
+
+    <span class="k">private</span> <span class="nv">$_queuedb</span><span class="p">;</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_queuedb</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QueueDB</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * 取出队列
+     * @param unknown $key
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">pop</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span><span class="nv">$time</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">unserialize</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_queuedb</span><span class="o">-&gt;</span><span class="na">pop</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span><span class="nv">$time</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">scan</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_queuedb</span><span class="o">-&gt;</span><span class="na">scan</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="queuedb-lpush-brpop">QueueDB代码如下 lpush入列 brpop出列</h3>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">QueueDB</span> <span class="p">{</span>
+
+    <span class="c1">//定义对象
+</span>    <span class="k">private</span> <span class="nv">$_redis</span><span class="p">;</span>
+
+    <span class="c1">//存储前缀
+</span>    <span class="k">private</span> <span class="nv">$_tb_prefix</span> <span class="o">=</span> <span class="s1">'QUEUE_TABLE_'</span><span class="p">;</span>
+
+    <span class="c1">//存定义存储表的数量,系统会随机分配存储
+</span>    <span class="k">private</span> <span class="nv">$_tb_num</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="c1">//临时存储表
+</span>    <span class="k">private</span> <span class="nv">$_tb_tmp</span> <span class="o">=</span> <span class="s1">'TMP_TABLE'</span><span class="p">;</span>
+
+    <span class="sd">/**
+     * 初始化
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nb">extension_loaded</span><span class="p">(</span><span class="s1">'redis'</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">throw_exception</span><span class="p">(</span><span class="s1">'redis failed to load'</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_redis</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Redis</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_redis</span><span class="o">-&gt;</span><span class="na">connect</span><span class="p">(</span><span class="nx">C</span><span class="p">(</span><span class="s1">'queue.host'</span><span class="p">),</span><span class="nx">C</span><span class="p">(</span><span class="s1">'queue.port'</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * 入列
+     * @param unknown $value
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">push</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_redis</span><span class="o">-&gt;</span><span class="na">lPush</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_tb_prefix</span><span class="o">.</span><span class="nb">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_tb_num</span><span class="p">),</span><span class="nv">$value</span><span class="p">);</span>
+        <span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+             <span class="nx">throw_exception</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="sd">/**
+     * 取得所有的list key(表)
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">scan</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nv">$list_key</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+        <span class="k">for</span><span class="p">(</span><span class="nv">$i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="nv">$i</span><span class="o">&lt;=</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_tb_num</span><span class="p">;</span><span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$list_key</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_tb_prefix</span><span class="o">.</span><span class="nv">$i</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nv">$list_key</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="sd">/**
+     * 出列
+     * @param unknown $key
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">pop</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$time</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_redis</span><span class="o">-&gt;</span><span class="na">brPop</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span><span class="nv">$time</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nv">$result</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">exit</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="sd">/**
+     * 清空,暂时无用
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">clear</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_redis</span><span class="o">-&gt;</span><span class="na">flushAll</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="key">在执行消息中key执行方法</h3>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="sd">/**
+ * 发送店铺消息
+ */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">sendStoreMsg</span><span class="p">(</span><span class="nv">$param</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$send</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sendStoreMsg</span><span class="p">();</span>
+    <span class="nv">$send</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">'code'</span><span class="p">,</span> <span class="nv">$param</span><span class="p">[</span><span class="s1">'code'</span><span class="p">]);</span>
+    <span class="nv">$send</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">'store_id'</span><span class="p">,</span> <span class="nv">$param</span><span class="p">[</span><span class="s1">'store_id'</span><span class="p">]);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$param</span><span class="p">[</span><span class="s1">'code'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'new_order'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$send</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">'pandaeeWorkerMobile'</span><span class="p">,</span>
+           	<span class="k">array</span><span class="p">(</span>
+               <span class="s1">'13003297107'</span><span class="p">,</span> <span class="c1">//李晨艳
+</span>               <span class="s1">'15370777530'</span><span class="p">,</span> <span class="c1">//杨蓓
+</span>               <span class="s1">'15121192885'</span><span class="p">,</span> <span class="c1">//张敏
+</span>               <span class="s1">'15618297863'</span><span class="p">,</span> <span class="c1">//阿飞
+</span>           	<span class="p">)</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nv">$send</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$param</span><span class="p">[</span><span class="s1">'param'</span><span class="p">]);</span>
+    <span class="c1">// 新订单产生推送至商家
+</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$param</span><span class="p">[</span><span class="s1">'code'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'new_order'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$send</span><span class="o">-&gt;</span><span class="na">pushToApp</span><span class="p">(</span><span class="nv">$param</span><span class="p">[</span><span class="s1">'store_id'</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">callback</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="o">&lt;?</span><span class="nx">php</span>
+</code></pre>
+</div>
+
+<h3 id="sendstoremsg">会实例化一个sendStoreMsg类</h3>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="sd">/**
+ * 商家有新订单的推送
+ */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">pushToApp</span><span class="p">(</span><span class="nv">$storeId</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$storeInfo</span> <span class="o">=</span> <span class="nx">Model</span><span class="p">(</span><span class="s1">'store'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getStoreInfoByID</span><span class="p">(</span><span class="nv">$storeId</span><span class="p">);</span>
+    <span class="nv">$sellerMemberId</span> <span class="o">=</span> <span class="nv">$storeInfo</span><span class="p">[</span><span class="s1">'member_id'</span><span class="p">];</span>
+    <span class="nx">Push</span><span class="o">::</span><span class="na">pushOrderToSeller</span><span class="p">(</span><span class="nv">$sellerMemberId</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
