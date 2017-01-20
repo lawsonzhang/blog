@@ -1,0 +1,12 @@
+---
+layout: post
+title:  "laravel 依赖注入的实现"
+date:   2017-01-20
+desc: "laravel依赖注入的实现"
+keywords: "IOC 依赖注入 Laravel"
+categories: [PHP]
+tags: [php]
+icon: icon-php
+---
+
+
