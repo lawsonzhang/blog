@@ -1,15 +1,15 @@
 - name:
-    detail: Pandaee
-    i18n: pandaee
+    detail: Hanmaker
+    i18n: hanmaker
   desc:
-    detail: Now I am in Pandaee and develop website with PHP code for Live shopping.
-    i18n: pandaee_des
+    detail: Now I am in Hanmaker and develop website (588ku.com) with PHP code for Live pictures trading.
+    i18n: hanmaker_des
   date:
-    detail: Jun. 2016
+    detail: Nov. 2016
     i18n: pandaee_date
   job:
     detail: PHP Developer
-    i18n: pandaee_job
+    i18n: hanmaker_job
   icon: fa-plus-square
 
 - name:
