@@ -6,7 +6,7 @@
     i18n: hanmaker_des
   date:
     detail: Nov. 2016
-    i18n: pandaee_date
+    i18n: hanmaker_date
   job:
     detail: PHP Developer
     i18n: hanmaker_job
