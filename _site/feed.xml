@@ -5,27 +5,184 @@
     <description>Lawson's blog,first step, second step...</description>
     <link>http://blog.lehehe.me//</link>
     <atom:link href="http://blog.lehehe.me//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 06 Nov 2016 17:09:30 +0800</pubDate>
-    <lastBuildDate>Sun, 06 Nov 2016 17:09:30 +0800</lastBuildDate>
+    <pubDate>Mon, 24 Apr 2017 23:26:09 +0800</pubDate>
+    <lastBuildDate>Mon, 24 Apr 2017 23:26:09 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
-        <title>新的篇章</title>
-        <description>&lt;!-- &gt;##### __生活有时候很奇怪，他会在你迫切需要一件东西的时候把它拿走，然后给你一件未来你用得上的东西作为补偿，这个时候，你需要做出选择__ --&gt;
+        <title>linux中vim编辑器的使用</title>
+        <description>&lt;link href=&quot;https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.css&quot; rel=&quot;stylesheet&quot; /&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;&lt;strong&gt;纯文本文件&lt;/strong&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
-  &lt;h5 id=&quot;section&quot;&gt;&lt;strong&gt;周五去的韩创面试，当天便下决定就是他了。我一直期望的，是一个可以值得拿命去拼的项目，能让我引以为豪的东西。我也一直记得这句话：好东西都是需要等待的。在此留文，以作鞭策&lt;/strong&gt;&lt;/h5&gt;
+  &lt;h6 id=&quot;section-1&quot;&gt;什么纯文本文件？纯文本文件就是文件的记录是0与1，通过编码系统将这些数字转换成我们认识的文字&lt;/h6&gt;
+
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;&lt;strong&gt;勿忘初心，方得始终&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;linux&quot;&gt;&lt;strong&gt;Linux下的文本编辑器&lt;/strong&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;h6 id=&quot;emacspiconanojoevim&quot;&gt;Emacs、Pico、Nano、Joe、Vim等&lt;/h6&gt;
+
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;&lt;strong&gt;模式&lt;/strong&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;h6 id=&quot;section-3&quot;&gt;一般模式、编辑模式、命令行模式&lt;/h6&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/static/img/landing/vim.png&quot; alt=&quot;模式关系&quot; /&gt;
+`
+`&lt;/p&gt;
+&lt;h3 id=&quot;section-4&quot;&gt;&lt;strong&gt;快捷键说明&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;h4 id=&quot;section-5&quot;&gt;一般模式：&lt;/h4&gt;
+
+&lt;table class=&quot;table table-condensed table-bordered&quot;&gt;
+	&lt;tr&gt;&lt;td&gt;&lt;h4&gt;快捷键&lt;/h4&gt;&lt;/td&gt;&lt;td&gt;&lt;h4&gt;描述&lt;/h4&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;h 或 ←&lt;/td&gt;&lt;td&gt;光标向左移动一个字符&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;j 或 ↓&lt;/td&gt;&lt;td&gt;光标向下移动一个字符&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;k 或 ↑&lt;/td&gt;&lt;td&gt;光标向上移动一个字符&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;l 或 →&lt;/td&gt;&lt;td&gt;光标向右移动一个字符&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;n + [方向键]&lt;/td&gt;&lt;td&gt;光标向某个方向移动 n 次&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;[ctrl] + f / PageDown&lt;/td&gt;&lt;td&gt;屏幕向下移动一页&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;[ctrl] + b / PageUp&lt;/td&gt;&lt;td&gt;屏幕向上移动一页&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;[ctrl] + d&lt;/td&gt;&lt;td&gt;屏幕向下移动半页&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;[ctrl] + u&lt;/td&gt;&lt;td&gt;屏幕向上移动半页&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;+&lt;/td&gt;&lt;td&gt;光标移动到非空格符的下一行&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;-&lt;/td&gt;&lt;td&gt;光标移动到非空格符的上一行&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;n Space&lt;/td&gt;&lt;td&gt;光标向右移动 n 个字符&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;0 / Home&lt;/td&gt;&lt;td&gt;光标移动到行最前&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;$ / End&lt;/td&gt;&lt;td&gt;光标移动到行最后&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;H&lt;/td&gt;&lt;td&gt;光标移动到屏幕最上方的第一行的第一个字符&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;M&lt;/td&gt;&lt;td&gt;光标移动到屏幕中央的那行的第一个字符&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;L&lt;/td&gt;&lt;td&gt;光标移动到屏幕最下方的哪一行的第一个字符&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;G&lt;/td&gt;&lt;td&gt;光标移动到该文件的最后一行&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;n G&lt;/td&gt;&lt;td&gt;光标移动到这个文件的第 n 行&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;g g&lt;/td&gt;&lt;td&gt;光标移动到这个文件的第一行&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
 </description>
-        <pubDate>Sun, 06 Nov 2016 00:00:00 +0800</pubDate>
-        <link>http://blog.lehehe.me//life/2016/11/06/%E6%96%B0%E7%9A%84%E7%AF%87%E7%AB%A0.html</link>
-        <guid isPermaLink="true">http://blog.lehehe.me//life/2016/11/06/%E6%96%B0%E7%9A%84%E7%AF%87%E7%AB%A0.html</guid>
+        <pubDate>Mon, 24 Apr 2017 00:00:00 +0800</pubDate>
+        <link>http://blog.lehehe.me//linux/2017/04/24/linux%E4%B8%ADvim%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8.html</link>
+        <guid isPermaLink="true">http://blog.lehehe.me//linux/2017/04/24/linux%E4%B8%ADvim%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8.html</guid>
         
-        <category>life</category>
+        <category>linux</category>
         
         
-        <category>Life</category>
+        <category>Linux</category>
+        
+      </item>
+    
+      <item>
+        <title>PHP 反射</title>
+        <description>&lt;p&gt;&lt;strong&gt;PHP 5 具有完整的反射 API，添加了对类、接口、函数、方法和扩展进行反向工程的能力。 此外，反射 API 提供了方法来取出函数、类和方法中的文档注释。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://php.net/manual/zh/book.reflection.php&quot;&gt;官方文档&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;/**
+ * php reflection 
+ * 反射
+ * PHP_VERSION &amp;gt;= 5
+ */&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;    
+    &lt;span class=&quot;sd&quot;&gt;/**  
+     * For the sake of demonstration, we&quot;re setting this private 
+     */&lt;/span&gt;   
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$_allowDynamicAttributes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+   
+    &lt;span class=&quot;sd&quot;&gt;/** type=primary_autoincrement */&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+   
+    &lt;span class=&quot;sd&quot;&gt;/** type=varchar length=255 null */&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+   
+    &lt;span class=&quot;sd&quot;&gt;/** type=text null */&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$biography&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+   
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+        &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+        &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getBiography&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;biography&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setBiography&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+        &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;biography&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+
+
+&lt;span class=&quot;nv&quot;&gt;$class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ReflectionClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Person'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//建立 Person这个类的反射类 
+&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$instance&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;newInstanceArgs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//相当于实例化Person 类  
+&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 1）获取属性(Properties)：
+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$properties&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getProperties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;  
+&lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$properties&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$property&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+    &lt;span class=&quot;c1&quot;&gt;// echo $property-&amp;gt;getName().&quot;\n&quot;;  
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+&lt;span class=&quot;c1&quot;&gt;// 输出:  
+// _allowDynamicAttributes  
+// id  
+// name  
+// biography  
+&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 2）获取注释：
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$properties&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$property&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$property&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isProtected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+        &lt;span class=&quot;nv&quot;&gt;$docblock&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$property&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDocComment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;  
+        &lt;span class=&quot;nb&quot;&gt;preg_match&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/ type\=([a-z_]*) /'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$property&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDocComment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$matches&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+        &lt;span class=&quot;c1&quot;&gt;// echo $matches[1].&quot;\n&quot;;  
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+&lt;span class=&quot;c1&quot;&gt;// Output:  
+// primary_autoincrement  
+// varchar  
+// text  
+&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 3）获取类的方法
+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$methods&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMethods&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;// 4）执行类的方法：
+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBiography&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//执行Person 里的方法getBiography  
+//或者：  
+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ec&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getmethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'setName'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;invoke&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$instance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;666&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;  &lt;span class=&quot;nv&quot;&gt;$class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getmethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'getName'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//获取Person 类中的getName方法 
+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;invoke&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$instance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//执行getName 方法
+// Output:  
+// 666
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Fri, 20 Jan 2017 00:00:00 +0800</pubDate>
+        <link>http://blog.lehehe.me//php/2017/01/20/PHP-%E5%8F%8D%E5%B0%84.html</link>
+        <guid isPermaLink="true">http://blog.lehehe.me//php/2017/01/20/PHP-%E5%8F%8D%E5%B0%84.html</guid>
+        
+        <category>php</category>
+        
+        
+        <category>PHP</category>
         
       </item>
     

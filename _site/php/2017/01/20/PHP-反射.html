@@ -7,16 +7,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-    <meta content="即将翻开新的篇章，做个记录：勿忘初心，方得始终" name="description">
+    <meta content="PHP 反射" name="description">
   
   
-    <meta name="keywords" content="鞭策">
+    <meta name="keywords" content="PHP 反射">
   
   <meta name="author" content="Lawsonzhang">
 
   <title>
     
-        Lawsonzhang's Homepage|新的篇章
+        Lawsonzhang's Homepage|PHP 反射
     
   </title>
   <!-- favicon -->
@@ -206,28 +206,121 @@
                 <div class="ibox-content">
                     <div class="pull-right">
                     	
-                        	<button class="btn btn-white btn-xs" type="button">Life</button>
+                        	<button class="btn btn-white btn-xs" type="button">PHP</button>
                         
                     </div>
                     <div class="text-center article-title">
-                    <span class="text-muted"><i class="fa fa-clock-o"></i> 6 Nov 2016</span>
+                    <span class="text-muted"><i class="fa fa-clock-o"></i> 20 Jan 2017</span>
                         <h1>
-                            新的篇章
+                            PHP 反射
                         </h1>
                     </div>
-                    	<!-- >##### __生活有时候很奇怪，他会在你迫切需要一件东西的时候把它拿走，然后给你一件未来你用得上的东西作为补偿，这个时候，你需要做出选择__ -->
-<blockquote>
-  <h5 id="section"><strong>周五去的韩创面试，当天便下决定就是他了。我一直期望的，是一个可以值得拿命去拼的项目，能让我引以为豪的东西。我也一直记得这句话：好东西都是需要等待的。在此留文，以作鞭策</strong></h5>
-</blockquote>
+                    	<p><strong>PHP 5 具有完整的反射 API，添加了对类、接口、函数、方法和扩展进行反向工程的能力。 此外，反射 API 提供了方法来取出函数、类和方法中的文档注释。</strong></p>
 
-<h2 id="section-1"><strong>勿忘初心，方得始终</strong></h2>
+<p><a href="http://php.net/manual/zh/book.reflection.php">官方文档</a></p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="sd">/**
+ * php reflection 
+ * 反射
+ * PHP_VERSION &gt;= 5
+ */</span>
+
+<span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>    
+    <span class="sd">/**  
+     * For the sake of demonstration, we"re setting this private 
+     */</span>   
+    <span class="k">private</span> <span class="nv">$_allowDynamicAttributes</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>  
+   
+    <span class="sd">/** type=primary_autoincrement */</span>  
+    <span class="k">protected</span> <span class="nv">$id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+   
+    <span class="sd">/** type=varchar length=255 null */</span>  
+    <span class="k">protected</span> <span class="nv">$name</span><span class="p">;</span>  
+   
+    <span class="sd">/** type=text null */</span>  
+    <span class="k">protected</span> <span class="nv">$biography</span><span class="p">;</span>  
+   
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getId</span><span class="p">()</span>  
+    <span class="p">{</span>  
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span>  
+    <span class="p">}</span>  
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setId</span><span class="p">(</span><span class="nv">$v</span><span class="p">)</span>  
+    <span class="p">{</span>  
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">=</span> <span class="nv">$v</span><span class="p">;</span>  
+    <span class="p">}</span>  
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getName</span><span class="p">()</span>  
+    <span class="p">{</span>  
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>  
+    <span class="p">}</span>  
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setName</span><span class="p">(</span><span class="nv">$v</span><span class="p">)</span>  
+    <span class="p">{</span>  
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$v</span><span class="p">;</span>  
+    <span class="p">}</span>  
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getBiography</span><span class="p">()</span>  
+    <span class="p">{</span>  
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">biography</span><span class="p">;</span>  
+    <span class="p">}</span>  
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setBiography</span><span class="p">(</span><span class="nv">$v</span><span class="p">)</span>  
+    <span class="p">{</span>  
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">biography</span> <span class="o">=</span> <span class="nv">$v</span><span class="p">;</span>  
+    <span class="p">}</span>  
+<span class="p">}</span>
+
+
+
+<span class="nv">$class</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ReflectionClass</span><span class="p">(</span><span class="s1">'Person'</span><span class="p">);</span><span class="c1">//建立 Person这个类的反射类 
+</span>
+<span class="nv">$instance</span>  <span class="o">=</span> <span class="nv">$class</span><span class="o">-&gt;</span><span class="na">newInstanceArgs</span><span class="p">();</span><span class="c1">//相当于实例化Person 类  
+</span>
+<span class="c1">// 1）获取属性(Properties)：
+</span><span class="nv">$properties</span> <span class="o">=</span> <span class="nv">$class</span><span class="o">-&gt;</span><span class="na">getProperties</span><span class="p">();</span>  
+<span class="k">foreach</span><span class="p">(</span><span class="nv">$properties</span> <span class="k">as</span> <span class="nv">$property</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="c1">// echo $property-&gt;getName()."\n";  
+</span><span class="p">}</span>  
+<span class="c1">// 输出:  
+// _allowDynamicAttributes  
+// id  
+// name  
+// biography  
+</span>
+<span class="c1">// 2）获取注释：
+</span><span class="k">foreach</span><span class="p">(</span><span class="nv">$properties</span> <span class="k">as</span> <span class="nv">$property</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="k">if</span><span class="p">(</span><span class="nv">$property</span><span class="o">-&gt;</span><span class="na">isProtected</span><span class="p">())</span> <span class="p">{</span>  
+        <span class="nv">$docblock</span> <span class="o">=</span> <span class="nv">$property</span><span class="o">-&gt;</span><span class="na">getDocComment</span><span class="p">();</span>  
+        <span class="nb">preg_match</span><span class="p">(</span><span class="s1">'/ type\=([a-z_]*) /'</span><span class="p">,</span> <span class="nv">$property</span><span class="o">-&gt;</span><span class="na">getDocComment</span><span class="p">(),</span> <span class="nv">$matches</span><span class="p">);</span>  
+        <span class="c1">// echo $matches[1]."\n";  
+</span>    <span class="p">}</span>  
+<span class="p">}</span>  
+<span class="c1">// Output:  
+// primary_autoincrement  
+// varchar  
+// text  
+</span>
+
+<span class="c1">// 3）获取类的方法
+</span><span class="nv">$methods</span> <span class="o">=</span> <span class="nv">$class</span><span class="o">-&gt;</span><span class="na">getMethods</span><span class="p">();</span>
+
+
+<span class="c1">// 4）执行类的方法：
+</span><span class="nv">$instance</span><span class="o">-&gt;</span><span class="na">getBiography</span><span class="p">();</span> <span class="c1">//执行Person 里的方法getBiography  
+//或者：  
+</span><span class="nv">$ec</span> <span class="o">=</span> <span class="nv">$class</span><span class="o">-&gt;</span><span class="na">getmethod</span><span class="p">(</span><span class="s1">'setName'</span><span class="p">);</span>
+<span class="nv">$ec</span><span class="o">-&gt;</span><span class="na">invoke</span><span class="p">(</span><span class="nv">$instance</span><span class="p">,</span> <span class="mi">666</span><span class="p">);</span>
+
+<span class="nv">$a</span> <span class="o">=</span>  <span class="nv">$class</span><span class="o">-&gt;</span><span class="na">getmethod</span><span class="p">(</span><span class="s1">'getName'</span><span class="p">);</span> <span class="c1">//获取Person 类中的getName方法 
+</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">invoke</span><span class="p">(</span><span class="nv">$instance</span><span class="p">);</span> <span class="c1">//执行getName 方法
+// Output:  
+// 666
+</span></code></pre>
+</div>
 
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
                                 <h5 style="display: inline;">Tags:</h5>
                                 
-                                    <button class="btn btn-white btn-xs" type="button">life</button>
+                                    <button class="btn btn-white btn-xs" type="button">php</button>
                                 
                         </div>
                         <div class="col-md-6">
@@ -235,7 +328,7 @@
                                 <h5>Stats:</h5>
                                 <div> 
                                 
-                                    <i class="fa fa-comments-o"> </i> <span id = "url::/life/2016/11/06/%E6%96%B0%E7%9A%84%E7%AF%87%E7%AB%A0.html" class = "cy_cmt_count" ></span> comments
+                                    <i class="fa fa-comments-o"> </i> <span id = "url::/php/2017/01/20/PHP-%E5%8F%8D%E5%B0%84.html" class = "cy_cmt_count" ></span> comments
                                 
                                 
                                 </div>

@@ -7,12 +7,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
+    <meta content="linux中vim编辑器的使用" name="description">
+  
+  
+    <meta name="keywords" content="linux, vim">
   
   <meta name="author" content="Lawsonzhang">
 
   <title>
     
-        Lawsonzhang's Homepage|Life
+        Lawsonzhang's Homepage|linux中vim编辑器的使用
     
   </title>
   <!-- favicon -->
@@ -147,7 +151,7 @@
                             <a class="page-scroll" href="/nosql/">NoSQL</a></li>
                         
                             
-                            <li class="active">
+                            <li>
                             
                             <a class="page-scroll" href="/life/">Life</a></li>
                         
@@ -195,38 +199,79 @@
 
 	
 
-        <div class="row">
-    <div class="col-lg-12 text-center">
-        <div class="navy-line"></div>
-        <h1>Life</h1>
-    </div>
-</div>
-
-<div class="wrapper wrapper-content  animated fadeInRight blog">
+    <div class="wrapper wrapper-content  animated fadeInRight article">
     <div class="row">
-		<ul id="pag-itemContainer" style="list-style:none;">
-    
-		
-		
-		<li>
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-lg-10 col-lg-offset-1">
             <div class="ibox">
                 <div class="ibox-content">
-                    <a href="/life/2016/09/26/first-blog.html" class="btn-link">
-                        <h2>
-                            First Blog
-                        </h2>
-                    </a>
-                    <div class="small m-b-xs">
-                        <strong>Lawsonzhang</strong> <span class="text-muted"><i class="fa fa-clock-o"></i> 26 Sep 2016</span>
+                    <div class="pull-right">
+                    	
+                        	<button class="btn btn-white btn-xs" type="button">Linux</button>
+                        
                     </div>
-                    <p>
-                    	My First Blog
+                    <div class="text-center article-title">
+                    <span class="text-muted"><i class="fa fa-clock-o"></i> 24 Apr 2017</span>
+                        <h1>
+                            linux中vim编辑器的使用
+                        </h1>
+                    </div>
+                    	<link href="https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.css" rel="stylesheet" />
 
-                    </p>
+<h3 id="section"><strong>纯文本文件</strong></h3>
+<blockquote>
+  <h6 id="section-1">什么纯文本文件？纯文本文件就是文件的记录是0与1，通过编码系统将这些数字转换成我们认识的文字</h6>
+
+</blockquote>
+
+<h3 id="linux"><strong>Linux下的文本编辑器</strong></h3>
+<blockquote>
+  <h6 id="emacspiconanojoevim">Emacs、Pico、Nano、Joe、Vim等</h6>
+
+</blockquote>
+
+<h3 id="section-2"><strong>模式</strong></h3>
+<blockquote>
+  <h6 id="section-3">一般模式、编辑模式、命令行模式</h6>
+
+</blockquote>
+
+<p><img src="/static/img/landing/vim.png" alt="模式关系" />
+`
+`</p>
+<h3 id="section-4"><strong>快捷键说明</strong></h3>
+
+<h4 id="section-5">一般模式：</h4>
+
+<table class="table table-condensed table-bordered">
+	<tr><td><h4>快捷键</h4></td><td><h4>描述</h4></td></tr>
+	<tr><td>h 或 ←</td><td>光标向左移动一个字符</td></tr>
+	<tr><td>j 或 ↓</td><td>光标向下移动一个字符</td></tr>
+	<tr><td>k 或 ↑</td><td>光标向上移动一个字符</td></tr>
+	<tr><td>l 或 →</td><td>光标向右移动一个字符</td></tr>
+	<tr><td>n + [方向键]</td><td>光标向某个方向移动 n 次</td></tr>
+	<tr><td>[ctrl] + f / PageDown</td><td>屏幕向下移动一页</td></tr>
+	<tr><td>[ctrl] + b / PageUp</td><td>屏幕向上移动一页</td></tr>
+	<tr><td>[ctrl] + d</td><td>屏幕向下移动半页</td></tr>
+	<tr><td>[ctrl] + u</td><td>屏幕向上移动半页</td></tr>
+	<tr><td>+</td><td>光标移动到非空格符的下一行</td></tr>
+	<tr><td>-</td><td>光标移动到非空格符的上一行</td></tr>
+	<tr><td>n Space</td><td>光标向右移动 n 个字符</td></tr>
+	<tr><td>0 / Home</td><td>光标移动到行最前</td></tr>
+	<tr><td>$ / End</td><td>光标移动到行最后</td></tr>
+	<tr><td>H</td><td>光标移动到屏幕最上方的第一行的第一个字符</td></tr>
+	<tr><td>M</td><td>光标移动到屏幕中央的那行的第一个字符</td></tr>
+	<tr><td>L</td><td>光标移动到屏幕最下方的哪一行的第一个字符</td></tr>
+	<tr><td>G</td><td>光标移动到该文件的最后一行</td></tr>
+	<tr><td>n G</td><td>光标移动到这个文件的第 n 行</td></tr>
+	<tr><td>g g</td><td>光标移动到这个文件的第一行</td></tr>
+</table>
+
+                    <hr>
                     <div class="row">
                         <div class="col-md-6">
                                 <h5 style="display: inline;">Tags:</h5>
+                                
+                                    <button class="btn btn-white btn-xs" type="button">linux</button>
                                 
                         </div>
                         <div class="col-md-6">
@@ -234,24 +279,56 @@
                                 <h5>Stats:</h5>
                                 <div> 
                                 
-                                    <i class="fa fa-comments-o"> </i> <span id = "url::http://blog.lehehe.me/life/2016/09/26/first-blog.html" class = "cy_cmt_count" ></span> comments
+                                    <i class="fa fa-comments-o"> </i> <span id = "url::/linux/2017/04/24/linux%E4%B8%ADvim%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8.html" class = "cy_cmt_count" ></span> comments
                                 
                                 
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- donate -->
+                            
+                            <br>
+                            <!-- share -->
+                            
+                                <h2>Share:</h2>
+
+<div class="bshare-custom">
+	<a title="分享到微信" class="bshare-weixin"></a>
+	<a title="分享到QQ空间" class="bshare-qzone"></a>
+	<a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+	<a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+</div>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=cdeed517-2e34-4287-8cb5-aef837206551&amp;pophcol=1&amp;lang=zh"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+                            
+                            <br>
+                            <!-- comment -->
+                            
+<h2>Comments:</h2>
+<div id="SOHUCS"></div>
+<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cysEteUF0',
+        conf: 'prod_b04efdcd652c29f9e4806ecb14edd799'
+    });
+</script>
+
+
+
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-        </li>
-        
-        </ul>
-        
-
-
-
     </div>
+
 </div>
 
 
