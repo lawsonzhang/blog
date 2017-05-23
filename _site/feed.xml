@@ -5,9 +5,236 @@
     <description>Lawson's blog,first step, second step...</description>
     <link>http://blog.lehehe.me//</link>
     <atom:link href="http://blog.lehehe.me//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 25 Apr 2017 23:21:35 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Apr 2017 23:21:35 +0800</lastBuildDate>
+    <pubDate>Tue, 23 May 2017 17:08:57 +0800</pubDate>
+    <lastBuildDate>Tue, 23 May 2017 17:08:57 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>thinkPHP 5.0.9 简要分析</title>
+        <description>&lt;h1 id=&quot;thinkphp-509-&quot;&gt;thinkPHP 5.0.9 简要分析&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;一、路由&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;section-1&quot;&gt;支持自定义路由，但是不强制路由&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;默认模式：PATHINFO模式 可以通过config设置路由支持&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;section-2&quot;&gt;支持路由注册缓存&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;会在runtime目录下面生成一个route.php路由缓存文件&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;section-3&quot;&gt;路由注册形式&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;静态和动态注册
+支持形式包括但不限于: Closure、group、全局/局部变量规则限定、REST resource路由、301重定向、namespace路由、MISS路由、alias、模型绑定、泛域名绑定
+https识别
+行为监测 监测匹配前是否满足条件 或者 路由匹配成功后执行后续动作
+针对单条路由 缓存结果   &lt;code class=&quot;highlighter-rouge&quot;&gt;Route::get('new/:name$','News/read',['cache'=&amp;gt;3600]);&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;二、日志&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;file&quot;&gt;支持自定义扩展日志驱动，默认是FILE&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;section-5&quot;&gt;日志先记录在内存中，请求结束后执行驱动写入&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;logerrornoticeinfodebugsql&quot;&gt;日志级别包括：log\error\notice\info\debug\sql&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;section-6&quot;&gt;日志记录级别可在配置中写入 也可以在每次写入时自定义&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;tracelog&quot;&gt;辅助函数 trace可在不使用Log类直接写入日志&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;section-7&quot;&gt;可以按日志级别做分别保存&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;section-8&quot;&gt;可以对服务器日志写入管理授权 控制高负载服务器的写入&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;rpc&quot;&gt;三、RPC通信&lt;/h3&gt;
+
+&lt;h4 id=&quot;venderworkman&quot;&gt;vender里面集成了workman库&lt;/h4&gt;
+&lt;h4 id=&quot;workmansocket&quot;&gt;可以通过workman进行socket进行远程（同步/异步）调用&lt;/h4&gt;
+
+&lt;h3 id=&quot;section-9&quot;&gt;四、数据库&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;pdo&quot;&gt;支持PDO连接&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;dbquerysql-dbexcutesql-sprintf&quot;&gt;Db::query执行原生查询SQL语句 Db::excute执行原生写入SQL语句 类sprintf语法&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;dbconnectconfig-&quot;&gt;Db::connect($config) 连接指定配置数据库&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;dbdbdbuser-whereid1-find&quot;&gt;辅助函数db可以代替Db类&lt;code class=&quot;highlighter-rouge&quot;&gt;db('user')-&amp;gt;where('id',1)-&amp;gt;find();&lt;/code&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;section-10&quot;&gt;支持闭包传参查询&lt;/h4&gt;
+
+    &lt;blockquote&gt;
+      &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Db::select(function($query){
+   $query-&amp;gt;table('think_user')-&amp;gt;where('status',1);
+ });
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;chunk&quot;&gt;支持对数据集闭包处理 chunk&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;json-&quot;&gt;支持json字段 数据查询&lt;/h4&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;// 查询JSON类型字段 （info字段为json类型）
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Db::table('think_user')-&amp;gt;where('info$.email','thinkphp@qq.com')-&amp;gt;find();&lt;/code&gt;&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;section-11&quot;&gt;支持延时更新数据库 &lt;code class=&quot;highlighter-rouge&quot;&gt;待看源码&lt;/code&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;section-12&quot;&gt;支持链式操作&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;count--max-&quot;&gt;支持聚合查询 count  max 等&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;where---wherenull-wherein&quot;&gt;支持多种快捷where方法  例如 whereNull whereIn等&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;section-13&quot;&gt;支持闭包进行子查询&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;beforeselectafterinsert&quot;&gt;支持各种查询事件绑定 before_select、after_insert等&lt;/h4&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Query::event('after_insert','callback');
+ Query::event('before_select',function($options,$query){
+    // 事件处理
+    return $result;
+ });
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;section-14&quot;&gt;支持事务处理&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;sql-dblistenfunctionsql-code-&quot;&gt;支持数据库sql监听 &lt;code class=&quot;highlighter-rouge&quot;&gt;Db::listen(function($sql){ #code... })&lt;/code&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;toarray-flip&quot;&gt;支持数据集处理 toArray flip等&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;section-15&quot;&gt;支持数据库读写分离&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-16&quot;&gt;五、缓存&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;file--filememcacheredissqlitexcache&quot;&gt;默认file驱动，支持自定义缓存驱动 支持多缓存 驱动默认支持:file、memcache、redis、sqlite、xcache&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;cachesetnamevalue3600&quot;&gt;写法：&lt;code class=&quot;highlighter-rouge&quot;&gt;Cache::set('name',$value,3600);&lt;/code&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;routegetnewidnewsreadcache3600&quot;&gt;支持针对路由的缓存 &lt;code class=&quot;highlighter-rouge&quot;&gt;Route::get('new/:id','News/read',['cache'=&amp;gt;3600]);&lt;/code&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;dbtablethinkuser-cachekey60-find&quot;&gt;支持针对数据库查询的缓存&lt;code class=&quot;highlighter-rouge&quot;&gt;Db::table('think_user')-&amp;gt;cache('key',60)-&amp;gt;find();&lt;/code&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-17&quot;&gt;六、异步&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;topthinkthinkphp-queue-tp-redis---job-pushqueue-work&quot;&gt;topthink/thinkphp-queue tp官方发布的扩展 默认支持redis队列 也支持 自定义驱动 先在业务逻辑层面将job push进queue 再启动work进程处理&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;待看源码&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-18&quot;&gt;七、部署&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;openbasedirweb&quot;&gt;确认open_basedir选项是否会影响web访问&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;nginxpathinfo&quot;&gt;检查低版本nginx对PATHINFO的支持&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;think-migration&quot;&gt;数据库迁移支持 think-migration&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;debug&quot;&gt;八、debug&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;section-19&quot;&gt;通过环境变量或者配置项开启或者关闭调试模式&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;sql--&quot;&gt;记录SQL日志，模板无缓存 异常会显示请求信息 和错误代码位置&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;trace-sql&quot;&gt;trace调试 会显示加载时间、内存开销、SQL、流程、错误位置等&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;debugremark-debuggetrangetimeremark&quot;&gt;Debug::remark打点 Debug::getRangeTime取出remark区间执行时间&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;dblistensql&quot;&gt;Db::listen监听SQL&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;socketchrome&quot;&gt;支持远程socket远程调试，将错误日志发送到chrome显示&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-20&quot;&gt;九、无用代码率&lt;/h3&gt;
+&lt;p&gt;…&lt;/p&gt;
+</description>
+        <pubDate>Tue, 23 May 2017 00:00:00 +0800</pubDate>
+        <link>http://blog.lehehe.me//php/2017/05/23/ThinkPHP5.0.0%E7%AE%80%E8%A6%81%E5%88%86%E6%9E%90.html</link>
+        <guid isPermaLink="true">http://blog.lehehe.me//php/2017/05/23/ThinkPHP5.0.0%E7%AE%80%E8%A6%81%E5%88%86%E6%9E%90.html</guid>
+        
+        <category>php</category>
+        
+        
+        <category>PHP</category>
+        
+      </item>
     
       <item>
         <title>扬州行</title>
@@ -387,6 +614,43 @@
 	&lt;tr&gt;&lt;td&gt;u&lt;/td&gt;&lt;td&gt;复原上一个操作&lt;/td&gt;&lt;/tr&gt;
 	&lt;tr&gt;&lt;td&gt;[Ctrl] + r&lt;/td&gt;&lt;td&gt;重做上一个操作&lt;/td&gt;&lt;/tr&gt;
 	&lt;tr&gt;&lt;td&gt;.&lt;/td&gt;&lt;td&gt;重复前一个操作&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&quot;section-6&quot;&gt;编辑模式：&lt;/h4&gt;
+
+&lt;table class=&quot;table table-condensed table-bordered&quot; id=&quot;part4&quot;&gt;
+	&lt;tr&gt;&lt;td&gt;&lt;h4&gt;快捷键&lt;/h4&gt;&lt;/td&gt;&lt;td&gt;&lt;h4&gt;描述&lt;/h4&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td colspan=&quot;2&quot; class=&quot;text-center&quot;&gt;&lt;h4&gt;&lt;a href=&quot;#part4&quot;&gt;进入插入或替换的编辑模式&lt;/a&gt;&lt;/h4&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;i&lt;/td&gt;&lt;td&gt;从光标所在处插入&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;I&lt;/td&gt;&lt;td&gt;从光标所在行的第一个非空格字符处插入&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;a&lt;/td&gt;&lt;td&gt;从目前光标所在的下一个字符处插入&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;A&lt;/td&gt;&lt;td&gt;从目前光标所在行的最后一个字符处插入&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;o&lt;/td&gt;&lt;td&gt;在光标所在的下一行插入新的一行&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;O&lt;/td&gt;&lt;td&gt;在光标所在的上一行插入新的一行&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td colspan=&quot;2&quot; class=&quot;text-center&quot;&gt;替换模式&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;r&lt;/td&gt;&lt;td&gt;替换光标所在的那个字符一次&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;R&lt;/td&gt;&lt;td&gt;一直往下替换光标所在的那个字符，按Esc终止&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&quot;section-7&quot;&gt;命令行模式：&lt;/h4&gt;
+
+&lt;table class=&quot;table table-condensed table-bordered&quot; id=&quot;part5&quot;&gt;
+	&lt;tr&gt;&lt;td&gt;&lt;h4&gt;快捷键&lt;/h4&gt;&lt;/td&gt;&lt;td&gt;&lt;h4&gt;描述&lt;/h4&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td colspan=&quot;2&quot; class=&quot;text-center&quot;&gt;&lt;h4&gt;&lt;a href=&quot;#part5&quot;&gt;命令行的保存、离开等命令&lt;/a&gt;&lt;/h4&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;:w&lt;/td&gt;&lt;td&gt;将编辑的数据写入硬盘文件中&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;:w!&lt;/td&gt;&lt;td&gt;若属性为只读时，强制写入。前提是用户有权限&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;:q&lt;/td&gt;&lt;td&gt;离开vi&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;:q!&lt;/td&gt;&lt;td&gt;强制离开不保存&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;:wq&lt;/td&gt;&lt;td&gt;保存后离开&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;ZZ&lt;/td&gt;&lt;td&gt;保存后离开。若文件未变更，则不保存离开&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;:w [filename]&lt;/td&gt;&lt;td&gt;另存为新文件&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;:r [filename]&lt;/td&gt;&lt;td&gt;读入另一个文件的数据。添加到光标所在行的后面&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;:{n1},{n2} w [filename]&lt;/td&gt;&lt;td&gt;将 n1 到 n2 行之间的内容另存为&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;:! [command]&lt;/td&gt;&lt;td&gt;暂时离开vi，并且执行 command 的显示结果&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td colspan=&quot;2&quot; class=&quot;text-center&quot;&gt;vim环境的更改&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;:set nu&lt;/td&gt;&lt;td&gt;显示行号&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;:set nonu&lt;/td&gt;&lt;td&gt;取消行号&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;ZZ&lt;/td&gt;&lt;td&gt;在光标所在的上一行插入新的一行&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 </description>
         <pubDate>Mon, 24 Apr 2017 00:00:00 +0800</pubDate>
