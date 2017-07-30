@@ -1,0 +1,143 @@
+# thinkPHP 5.0.9 简要分析
+
+###### __文档撰写人：__ Lawson (2017-05-23)
+
+---
+
+### 一、路由
+
+ 1. #### 支持自定义路由，但是不强制路由
+ 
+ > 默认模式：PATHINFO模式 可以通过config设置路由支持
+
+ 2. #### 支持路由注册缓存
+
+ > 会在runtime目录下面生成一个route.php路由缓存文件
+
+ 3. #### 路由注册形式
+
+ > 静态和动态注册
+ > 支持形式包括但不限于: Closure、group、全局/局部变量规则限定、REST resource路由、301重定向、namespace路由、MISS路由、alias、模型绑定、泛域名绑定
+ > https识别
+ > 行为监测 监测匹配前是否满足条件 或者 路由匹配成功后执行后续动作
+ > 针对单条路由 缓存结果   `Route::get('new/:name$','News/read',['cache'=>3600]);`
+  
+
+### 二、日志
+
+ 1. #### 支持自定义扩展日志驱动，默认是FILE
+ 
+ 2. #### 日志先记录在内存中，请求结束后执行驱动写入
+ 
+ 3. #### 日志级别包括：log\error\notice\info\debug\sql
+
+ 4. #### 日志记录级别可在配置中写入 也可以在每次写入时自定义
+
+ 5. #### 辅助函数 trace可在不使用Log类直接写入日志
+ 
+ 6. #### 可以按日志级别做分别保存
+ 
+ 7. #### 可以对服务器日志写入管理授权 控制高负载服务器的写入
+
+
+### 三、RPC通信
+
+#### vender里面集成了workman库
+#### 可以通过workman进行socket进行远程（同步/异步）调用
+
+### 四、数据库
+
+ 1. #### 支持PDO连接
+ 
+ 2. #### Db::query执行原生查询SQL语句 Db::excute执行原生写入SQL语句 类sprintf语法
+ 
+ 3. #### Db::connect($config) 连接指定配置数据库
+ 
+ 4. #### 辅助函数db可以代替Db类`db('user')->where('id',1)->find();`
+ 
+ 5. #### 支持闭包传参查询
+ 
+    >      Db::select(function($query){
+           $query->table('think_user')->where('status',1);
+    >      });
+
+ 6. #### 支持对数据集闭包处理 chunk
+ 
+ 7. #### 支持json字段 数据查询
+
+    > // 查询JSON类型字段 （info字段为json类型）
+    > `Db::table('think_user')->where('info$.email','thinkphp@qq.com')->find();`
+
+ 8. #### 支持延时更新数据库 `待看源码`
+ 
+ 9. #### 支持链式操作
+ 
+ 10. #### 支持聚合查询 count  max 等
+ 
+ 11. #### 支持多种快捷where方法  例如 whereNull whereIn等
+ 
+ 12. #### 支持闭包进行子查询
+ 
+ 13. #### 支持各种查询事件绑定 before_select、after_insert等
+
+    
+          Query::event('after_insert','callback');
+          Query::event('before_select',function($options,$query){
+             // 事件处理
+             return $result;
+          });
+    
+
+ 14. #### 支持事务处理
+ 
+ 15. #### 支持数据库sql监听 `Db::listen(function($sql){ #code... })`
+ 
+ 16. #### 支持数据集处理 toArray flip等
+ 
+ 17. #### 支持数据库读写分离
+ 
+
+### 五、缓存
+
+ 1. #### 默认file驱动，支持自定义缓存驱动 支持多缓存 驱动默认支持:file、memcache、redis、sqlite、xcache
+ 
+ 2. #### 写法：`Cache::set('name',$value,3600);`
+ 
+ 3. #### 支持针对路由的缓存 `Route::get('new/:id','News/read',['cache'=>3600]);`
+ 
+ 4. #### 支持针对数据库查询的缓存`Db::table('think_user')->cache('key',60)->find();`
+ 
+
+### 六、异步
+
+ 1. #### topthink/thinkphp-queue tp官方发布的扩展 默认支持redis队列 也支持 自定义驱动 先在业务逻辑层面将job push进queue 再启动work进程处理
+ 
+ 2. `待看源码`
+
+
+### 七、部署
+
+ 1. #### 确认open_basedir选项是否会影响web访问
+ 
+ 2. #### 检查低版本nginx对PATHINFO的支持
+ 
+ 3. #### 数据库迁移支持 think-migration
+
+
+### 八、debug
+
+ 1. #### 通过环境变量或者配置项开启或者关闭调试模式
+
+ 2. #### 记录SQL日志，模板无缓存 异常会显示请求信息 和错误代码位置
+
+ 3. #### trace调试 会显示加载时间、内存开销、SQL、流程、错误位置等
+
+ 4. #### Debug::remark打点 Debug::getRangeTime取出remark区间执行时间
+
+ 5. #### Db::listen监听SQL
+
+ 6. #### 支持远程socket远程调试，将错误日志发送到chrome显示
+ 
+
+### 九、无用代码率
+...
