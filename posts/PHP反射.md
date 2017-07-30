@@ -1,0 +1,101 @@
+**PHP 5 具有完整的反射 API，添加了对类、接口、函数、方法和扩展进行反向工程的能力。 此外，反射 API 提供了方法来取出函数、类和方法中的文档注释。**
+
+
+[官方文档](http://php.net/manual/zh/book.reflection.php) 
+
+
+``` php
+<?php
+/**
+ * php reflection 
+ * 反射
+ * PHP_VERSION >= 5
+ */
+
+class Person {    
+    /**  
+     * For the sake of demonstration, we"re setting this private 
+     */   
+    private $_allowDynamicAttributes = false;  
+   
+    /** type=primary_autoincrement */  
+    protected $id = 0;  
+   
+    /** type=varchar length=255 null */  
+    protected $name;  
+   
+    /** type=text null */  
+    protected $biography;  
+   
+    public function getId()  
+    {  
+        return $this->id;  
+    }  
+    public function setId($v)  
+    {  
+        $this->id = $v;  
+    }  
+    public function getName()  
+    {  
+        return $this->name;  
+    }  
+    public function setName($v)  
+    {  
+        $this->name = $v;  
+    }  
+    public function getBiography()  
+    {  
+        return $this->biography;  
+    }  
+    public function setBiography($v)  
+    {  
+        $this->biography = $v;  
+    }  
+}
+
+
+
+$class = new ReflectionClass('Person');//建立 Person这个类的反射类 
+
+$instance  = $class->newInstanceArgs();//相当于实例化Person 类  
+
+// 1）获取属性(Properties)：
+$properties = $class->getProperties();  
+foreach($properties as $property) {  
+    // echo $property->getName()."\n";  
+}  
+// 输出:  
+// _allowDynamicAttributes  
+// id  
+// name  
+// biography  
+
+// 2）获取注释：
+foreach($properties as $property) {  
+    if($property->isProtected()) {  
+        $docblock = $property->getDocComment();  
+        preg_match('/ type\=([a-z_]*) /', $property->getDocComment(), $matches);  
+        // echo $matches[1]."\n";  
+    }  
+}  
+// Output:  
+// primary_autoincrement  
+// varchar  
+// text  
+
+
+// 3）获取类的方法
+$methods = $class->getMethods();
+
+
+// 4）执行类的方法：
+$instance->getBiography(); //执行Person 里的方法getBiography  
+//或者：  
+$ec = $class->getmethod('setName');
+$ec->invoke($instance, 666);
+
+$a =  $class->getmethod('getName'); //获取Person 类中的getName方法 
+$a->invoke($instance); //执行getName 方法
+// Output:  
+// 666
+```
