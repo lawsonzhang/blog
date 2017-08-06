@@ -14,7 +14,7 @@
 >
 >
 
-![模式关系](/static/img/landing/vim.png)
+![模式关系](static/img/vim.png)
 `
 `
 ### __快捷键说明__

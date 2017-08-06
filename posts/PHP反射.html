@@ -1014,191 +1014,99 @@ body .markdown-body
     page-break-after: avoid;
   }
 }
-</style><title>thinkPHP 5.0.9 简要分析</title></head><body><article class="markdown-body"><h1 id="thinkphp-509"><a name="user-content-thinkphp-509" href="#thinkphp-509" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>thinkPHP 5.0.9 简要分析</h1>
-<h6 id="lawson-2017-05-23"><strong>文档撰写人：</strong> Lawson (2017-05-23)</h6>
-<hr />
-<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>一、路由</h3>
-<ol>
-<li>
-<h4 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持自定义路由，但是不强制路由</h4>
-</li>
-</ol>
-<blockquote>
-<p>默认模式：PATHINFO模式 可以通过config设置路由支持</p>
-</blockquote>
-<ol>
-<li>
-<h4 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持路由注册缓存</h4>
-</li>
-</ol>
-<blockquote>
-<p>会在runtime目录下面生成一个route.php路由缓存文件</p>
-</blockquote>
-<ol>
-<li>
-<h4 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>路由注册形式</h4>
-</li>
-</ol>
-<blockquote>
-<p>静态和动态注册<br />
-支持形式包括但不限于: Closure、group、全局/局部变量规则限定、REST resource路由、301重定向、namespace路由、MISS路由、alias、模型绑定、泛域名绑定<br />
-https识别<br />
-行为监测 监测匹配前是否满足条件 或者 路由匹配成功后执行后续动作<br />
-针对单条路由 缓存结果   <code>Route::get('new/:name$','News/read',['cache'=&gt;3600]);</code></p>
-</blockquote>
-<h3 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>二、日志</h3>
-<ol>
-<li>
-<h4 id="file"><a name="user-content-file" href="#file" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持自定义扩展日志驱动，默认是FILE</h4>
-</li>
-<li>
-<h4 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>日志先记录在内存中，请求结束后执行驱动写入</h4>
-</li>
-<li>
-<h4 id="logerrornoticeinfodebugsql"><a name="user-content-logerrornoticeinfodebugsql" href="#logerrornoticeinfodebugsql" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>日志级别包括：log\error\notice\info\debug\sql</h4>
-</li>
-<li>
-<h4 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>日志记录级别可在配置中写入 也可以在每次写入时自定义</h4>
-</li>
-<li>
-<h4 id="tracelog"><a name="user-content-tracelog" href="#tracelog" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>辅助函数 trace可在不使用Log类直接写入日志</h4>
-</li>
-<li>
-<h4 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>可以按日志级别做分别保存</h4>
-</li>
-<li>
-<h4 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>可以对服务器日志写入管理授权 控制高负载服务器的写入</h4>
-</li>
-</ol>
-<h3 id="rpc"><a name="user-content-rpc" href="#rpc" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>三、RPC通信</h3>
-<h4 id="venderworkman"><a name="user-content-venderworkman" href="#venderworkman" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>vender里面集成了workman库</h4>
-<h4 id="workmansocket"><a name="user-content-workmansocket" href="#workmansocket" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>可以通过workman进行socket进行远程（同步/异步）调用</h4>
-<h3 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>四、数据库</h3>
-<ol>
-<li>
-<h4 id="pdo"><a name="user-content-pdo" href="#pdo" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持PDO连接</h4>
-</li>
-<li>
-<h4 id="dbquerysql-dbexcutesql-sprintf"><a name="user-content-dbquerysql-dbexcutesql-sprintf" href="#dbquerysql-dbexcutesql-sprintf" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Db::query执行原生查询SQL语句 Db::excute执行原生写入SQL语句 类sprintf语法</h4>
-</li>
-<li>
-<h4 id="dbconnectconfig"><a name="user-content-dbconnectconfig" href="#dbconnectconfig" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Db::connect($config) 连接指定配置数据库</h4>
-</li>
-<li>
-<h4 id="dbdbdbuser-whereid1-find"><a name="user-content-dbdbdbuser-whereid1-find" href="#dbdbdbuser-whereid1-find" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>辅助函数db可以代替Db类<code>db('user')-&gt;where('id',1)-&gt;find();</code></h4>
-</li>
-<li>
-<h4 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持闭包传参查询</h4>
-<blockquote>
-<pre><code> Db::select(function($query){
-   $query-&gt;table('think_user')-&gt;where('status',1);
- });
-</code></pre>
-</blockquote>
-</li>
-<li>
-<h4 id="chunk"><a name="user-content-chunk" href="#chunk" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持对数据集闭包处理 chunk</h4>
-</li>
-<li>
-<h4 id="json"><a name="user-content-json" href="#json" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持json字段 数据查询</h4>
-<blockquote>
-<p>// 查询JSON类型字段 （info字段为json类型）<br />
-<code>Db::table('think_user')-&gt;where('info$.email','thinkphp@qq.com')-&gt;find();</code></p>
-</blockquote>
-</li>
-<li>
-<h4 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持延时更新数据库 <code>待看源码</code></h4>
-</li>
-<li>
-<h4 id="_13"><a name="user-content-_13" href="#_13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持链式操作</h4>
-</li>
-<li>
-<h4 id="count-max"><a name="user-content-count-max" href="#count-max" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持聚合查询 count  max 等</h4>
-</li>
-<li>
-<h4 id="where-wherenull-wherein"><a name="user-content-where-wherenull-wherein" href="#where-wherenull-wherein" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持多种快捷where方法  例如 whereNull whereIn等</h4>
-</li>
-<li>
-<h4 id="_14"><a name="user-content-_14" href="#_14" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持闭包进行子查询</h4>
-</li>
-<li>
-<h4 id="before_selectafter_insert"><a name="user-content-before_selectafter_insert" href="#before_selectafter_insert" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持各种查询事件绑定 before_select、after_insert等</h4>
-<pre><code>  Query::event('after_insert','callback');
-  Query::event('before_select',function($options,$query){
-     // 事件处理
-     return $result;
-  });
-</code></pre>
-</li>
-<li>
-<h4 id="_15"><a name="user-content-_15" href="#_15" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持事务处理</h4>
-</li>
-<li>
-<h4 id="sql-dblistenfunctionsql-code"><a name="user-content-sql-dblistenfunctionsql-code" href="#sql-dblistenfunctionsql-code" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持数据库sql监听 <code>Db::listen(function($sql){ #code... })</code></h4>
-</li>
-<li>
-<h4 id="toarray-flip"><a name="user-content-toarray-flip" href="#toarray-flip" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持数据集处理 toArray flip等</h4>
-</li>
-<li>
-<h4 id="_16"><a name="user-content-_16" href="#_16" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持数据库读写分离</h4>
-</li>
-</ol>
-<h3 id="_17"><a name="user-content-_17" href="#_17" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>五、缓存</h3>
-<ol>
-<li>
-<h4 id="file-filememcacheredissqlitexcache"><a name="user-content-file-filememcacheredissqlitexcache" href="#file-filememcacheredissqlitexcache" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>默认file驱动，支持自定义缓存驱动 支持多缓存 驱动默认支持:file、memcache、redis、sqlite、xcache</h4>
-</li>
-<li>
-<h4 id="cachesetnamevalue3600"><a name="user-content-cachesetnamevalue3600" href="#cachesetnamevalue3600" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>写法：<code>Cache::set('name',$value,3600);</code></h4>
-</li>
-<li>
-<h4 id="routegetnewidnewsreadcache3600"><a name="user-content-routegetnewidnewsreadcache3600" href="#routegetnewidnewsreadcache3600" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持针对路由的缓存 <code>Route::get('new/:id','News/read',['cache'=&gt;3600]);</code></h4>
-</li>
-<li>
-<h4 id="dbtablethink_user-cachekey60-find"><a name="user-content-dbtablethink_user-cachekey60-find" href="#dbtablethink_user-cachekey60-find" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持针对数据库查询的缓存<code>Db::table('think_user')-&gt;cache('key',60)-&gt;find();</code></h4>
-</li>
-</ol>
-<h3 id="_18"><a name="user-content-_18" href="#_18" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>六、异步</h3>
-<ol>
-<li>
-<h4 id="topthinkthinkphp-queue-tp-redis-job-pushqueue-work"><a name="user-content-topthinkthinkphp-queue-tp-redis-job-pushqueue-work" href="#topthinkthinkphp-queue-tp-redis-job-pushqueue-work" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>topthink/thinkphp-queue tp官方发布的扩展 默认支持redis队列 也支持 自定义驱动 先在业务逻辑层面将job push进queue 再启动work进程处理</h4>
-</li>
-<li>
-<p><code>待看源码</code></p>
-</li>
-</ol>
-<h3 id="_19"><a name="user-content-_19" href="#_19" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>七、部署</h3>
-<ol>
-<li>
-<h4 id="open_basedirweb"><a name="user-content-open_basedirweb" href="#open_basedirweb" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>确认open_basedir选项是否会影响web访问</h4>
-</li>
-<li>
-<h4 id="nginxpathinfo"><a name="user-content-nginxpathinfo" href="#nginxpathinfo" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>检查低版本nginx对PATHINFO的支持</h4>
-</li>
-<li>
-<h4 id="think-migration"><a name="user-content-think-migration" href="#think-migration" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>数据库迁移支持 think-migration</h4>
-</li>
-</ol>
-<h3 id="debug"><a name="user-content-debug" href="#debug" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>八、debug</h3>
-<ol>
-<li>
-<h4 id="_20"><a name="user-content-_20" href="#_20" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>通过环境变量或者配置项开启或者关闭调试模式</h4>
-</li>
-<li>
-<h4 id="sql"><a name="user-content-sql" href="#sql" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>记录SQL日志，模板无缓存 异常会显示请求信息 和错误代码位置</h4>
-</li>
-<li>
-<h4 id="trace-sql"><a name="user-content-trace-sql" href="#trace-sql" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>trace调试 会显示加载时间、内存开销、SQL、流程、错误位置等</h4>
-</li>
-<li>
-<h4 id="debugremark-debuggetrangetimeremark"><a name="user-content-debugremark-debuggetrangetimeremark" href="#debugremark-debuggetrangetimeremark" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Debug::remark打点 Debug::getRangeTime取出remark区间执行时间</h4>
-</li>
-<li>
-<h4 id="dblistensql"><a name="user-content-dblistensql" href="#dblistensql" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Db::listen监听SQL</h4>
-</li>
-<li>
-<h4 id="socketchrome"><a name="user-content-socketchrome" href="#socketchrome" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>支持远程socket远程调试，将错误日志发送到chrome显示</h4>
-</li>
-</ol>
-<h3 id="_21"><a name="user-content-_21" href="#_21" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>九、无用代码率</h3>
-<p>&hellip;</p></article></body></html>
+</style><title>PHP反射</title></head><body><article class="markdown-body"><p><strong>PHP 5 具有完整的反射 API，添加了对类、接口、函数、方法和扩展进行反向工程的能力。 此外，反射 API 提供了方法来取出函数、类和方法中的文档注释。</strong></p>
+<p><a href="http://php.net/manual/zh/book.reflection.php">官方文档</a> </p>
+<pre><code class="php">&lt;?php
+/**
+ * php reflection 
+ * 反射
+ * PHP_VERSION &gt;= 5
+ */
+
+class Person {    
+    /**  
+     * For the sake of demonstration, we&quot;re setting this private 
+     */   
+    private $_allowDynamicAttributes = false;  
+
+    /** type=primary_autoincrement */  
+    protected $id = 0;  
+
+    /** type=varchar length=255 null */  
+    protected $name;  
+
+    /** type=text null */  
+    protected $biography;  
+
+    public function getId()  
+    {  
+        return $this-&gt;id;  
+    }  
+    public function setId($v)  
+    {  
+        $this-&gt;id = $v;  
+    }  
+    public function getName()  
+    {  
+        return $this-&gt;name;  
+    }  
+    public function setName($v)  
+    {  
+        $this-&gt;name = $v;  
+    }  
+    public function getBiography()  
+    {  
+        return $this-&gt;biography;  
+    }  
+    public function setBiography($v)  
+    {  
+        $this-&gt;biography = $v;  
+    }  
+}
+
+
+
+$class = new ReflectionClass('Person');//建立 Person这个类的反射类 
+
+$instance  = $class-&gt;newInstanceArgs();//相当于实例化Person 类  
+
+// 1）获取属性(Properties)：
+$properties = $class-&gt;getProperties();  
+foreach($properties as $property) {  
+    // echo $property-&gt;getName().&quot;\n&quot;;  
+}  
+// 输出:  
+// _allowDynamicAttributes  
+// id  
+// name  
+// biography  
+
+// 2）获取注释：
+foreach($properties as $property) {  
+    if($property-&gt;isProtected()) {  
+        $docblock = $property-&gt;getDocComment();  
+        preg_match('/ type\=([a-z_]*) /', $property-&gt;getDocComment(), $matches);  
+        // echo $matches[1].&quot;\n&quot;;  
+    }  
+}  
+// Output:  
+// primary_autoincrement  
+// varchar  
+// text  
+
+
+// 3）获取类的方法
+$methods = $class-&gt;getMethods();
+
+
+// 4）执行类的方法：
+$instance-&gt;getBiography(); //执行Person 里的方法getBiography  
+//或者：  
+$ec = $class-&gt;getmethod('setName');
+$ec-&gt;invoke($instance, 666);
+
+$a =  $class-&gt;getmethod('getName'); //获取Person 类中的getName方法 
+$a-&gt;invoke($instance); //执行getName 方法
+// Output:  
+// 666
+</code></pre></article></body></html>

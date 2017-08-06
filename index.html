@@ -33,12 +33,12 @@
 		<div class="row" style="margin-top: 5%">
 			<div class="col-md-2">
 				<ul class="list-unstyled list-group">
-					<li class="list-group-item"><a href="javascript:;">thinkPHP 5.0.9 简要分析</a></li>
-					<li class="list-group-item"><a href="javascript:;">扬州行</a></li>
-					<li class="list-group-item"><a href="javascript:;">linux中vim编辑器的使用</a></li>
-					<li class="list-group-item"><a href="javascript:;">PHP 反射</a></li>
-					<li class="list-group-item"><a href="javascript:;">秒杀、抢购活动设计</a></li>
-					<li class="list-group-item"><a href="javascript:;">PHP 冒泡</a></li>
+					<li class="list-group-item detail-button"><a href="javascript:;">thinkPHP-5.0.9简要分析</a></li>
+					<li class="list-group-item detail-button"><a href="javascript:;">扬州行</a></li>
+					<li class="list-group-item detail-button"><a href="javascript:;">linux中vim编辑器的使用</a></li>
+					<li class="list-group-item detail-button"><a href="javascript:;">PHP反射</a></li>
+					<li class="list-group-item detail-button"><a href="javascript:;">秒杀、抢购活动设计</a></li>
+					<li class="list-group-item detail-button"><a href="javascript:;">PHP冒泡</a></li>
 				</ul>
 			</div>
 			<div class="col-md-10" id="show-content"></div>
@@ -46,8 +46,15 @@
 	</div>
 	<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript">
-		$.get('posts/thinkPHP%205.0.9%20简要分析.html', function(data){
+		$.get('posts/HOME.html', function(data){
 			$('#show-content').html(data);
+		});
+		$('.detail-button').on('click', function(){
+			var dtitle = $(this).text();
+			console.log(dtitle);
+			$.get('posts/' + dtitle + '.html', function(data){
+				$('#show-content').html(data);
+			});
 		});
 	</script>
 </body>
