@@ -1014,7 +1014,12 @@ body .markdown-body
     page-break-after: avoid;
   }
 }
-</style><title>PHP反射</title></head><body><article class="markdown-body"><p><strong>PHP 5 具有完整的反射 API，添加了对类、接口、函数、方法和扩展进行反向工程的能力。 此外，反射 API 提供了方法来取出函数、类和方法中的文档注释。</strong></p>
+</style><title>PHP反射</title></head><body><article class="markdown-body"><h4 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>一个使用反射的最佳实践体现： 依赖注入</h4>
+<blockquote>
+<p><strong>PHP 5 具有完整的反射 API，添加了对类、接口、函数、方法和扩展进行反向工程的能力。 此外，反射 API 提供了方法来取出函数、类和方法中的文档注释。</strong><br />
+通过将一个已知类在 反射类 <code>ReflectionClass</code> 中实例化以后，可以通过反射类的一些固有方法，去使用原有类的所有属性和方法，包括注释也可以读取到<br />
+通过反射类，我们可以定义一组默认的方法，通过在原有类实现这一组同名的方法 我们可以实现依赖的自动注入</p>
+</blockquote>
 <p><a href="http://php.net/manual/zh/book.reflection.php">官方文档</a> </p>
 <pre><code class="php">&lt;?php
 /**
