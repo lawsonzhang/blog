@@ -16,10 +16,10 @@
 title: manthilam
 email: manthilam@126.com
 description: >- # this means to ignore newlines until "baseurl:"
-  I am a PHP engineer with website development, automation Ops and writing scripts experience. Life is a continuous learning process, so work makes me more rigorous, travel makes my life more colorful. I can make lots of friends when I coding and travel.
+  @2018 Lawson.zhang, Inc
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: lawsonzhang
+# twitter_username: lawsonzhang
 github_username:  lawsonzhang
 
 # Build settings
